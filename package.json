@@ -3,7 +3,6 @@
   "description": "ifchange Controller FrameWork",
   "version": "0.0.1",
   "dependencies": {
-    "connect": "~2.7.3",
     "express": "3.x",
     "consolidate": "~0.8.0",
     "dustjs-linkedin": "~1.2.1",
