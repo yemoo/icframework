@@ -1,0 +1,23 @@
+{
+  "name": "icframe",
+  "description": "ifchange Controller FrameWork",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "~2.7.3",
+    "express": "3.x",
+    "consolidate": "~0.8.0",
+    "dustjs-linkedin": "~1.2.1",
+    "async": "~0.2.6",
+    "winston": "~0.6.2",
+    "inflection": "~1.2.5",
+    "utilities": "0.0.20"
+  },
+  "main": "index",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "bin":{
+    "icframe": "./bin/icframe.js"
+  },
+  "readmeFilename": "README.md"
+}

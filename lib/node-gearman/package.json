@@ -1,0 +1,41 @@
+{
+  "name": "gearman",
+  "preferGlobal": "false",
+  "version": "0.0.1",
+  "author": {
+    "name": "Mike Reinstein"
+  },
+  "description": "gearman client and worker library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mreinstein/node-gearman.git"
+  },
+  "keywords": [
+    "gearman"
+  ],
+  "dependencies": {
+    "binary": "0.3.x",
+    "put": "0.0.x"
+  },
+  "devDependencies": {
+    "nodeunit": "0.7.x",
+    "buffertools": "1.1.x"
+  },
+  "main": "./gearman",
+  "scripts": {
+    "test": "nodeunit tests"
+  },
+  "noAnalyze": true,
+  "bundleDependencies": [],
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.8"
+  },
+  "readme": "# Gearman Client for nodejs \n\n\n##Why Another Nodejs Gearman Client?\nI evaluated several existing libraries on github, but they either lack features, or stability, or recent updates. \n\n### PROS:\n\n* full implementation of worker and client\n* lean abstraction over raw gearman protocol\n* lots of unit tests\n* fast\n* small\n* fully interoperable with gearman clients and workers written in other languages\n\n### CONS:\n\n* lacks elegant high level abstractions for doing work. A bit more boilerplate to write\n* only supports 1 server connection per client/worker\n* documentation is lacking. This is a priority and it's being addressed\n\n\n## Install\n```\ngit clone https://github.com/mreinstein/node-gearman.git\nnpm install ./node-gearman\nrm -rf node-gearman\n```\n\n## Test\n```\nnpm test\n```\n\n\n## Cookbook\n\n### create a client, create 1 job, and handle it's completion\n\n```coffeescript\nGearman = require('gearman').Gearman\n\nclient = new Gearman() # assumes localhost, port 4730  \n\n# handle finished jobs\nclient.on 'WORK_COMPLETE', (job) ->\n\tconsole.log 'job completed, result:', job.payload.toString()\n\tclient.close()\n\n# connect to the gearman server\nclient.connect ->\n\t# submit a job to uppercase a string with normal priority in the foreground\n\tclient.submitJob 'upper', 'Hello, World!'\n```\n\n\n### create a worker, register a function, and handle jobs\n\n```coffeescript\nGearman = require('gearman').Gearman\n\nworker = new Gearman('127.0.0.1', 4730) \n\n# handle jobs assigned by the server\nworker.on 'JOB_ASSIGN', (job) ->\n\tconsole.log job.func_name + ' job assigned to this worker'\n\tresult = job.payload.toString().toUpperCase()\n\t# notify the server the job is done\n\tworker.sendWorkComplete job.handle, result\n\n\t# go back to sleep, telling the server we're ready for more work\n\tworker.preSleep()\n\n# grab a job when the server signals one is available\nworker.on 'NOOP', ->\n\tworker.grabJob()\n\n# connect to the gearman server\t\nworker.connect ->\n\t# register the functions this worker is capable of\n\tworker.addFunction 'upper'\n\n\t# tell the server the worker is going to sleep, waiting for work\n\tworker.preSleep()\n```\n\n",
+  "readmeFilename": "README.md",
+  "_id": "gearman@0.0.1",
+  "dist": {
+    "shasum": "6215a1838299e7167b213655a66224c0a7814163"
+  },
+  "_from": "./node-gearman"
+}
