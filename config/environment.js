@@ -1,7 +1,7 @@
 var cwd = process.cwd();
 
 module.exports = {
-    environment: 'development',
+    env: 'development',
     hostname: '',
     port: 3000,
     // default view Engine
@@ -11,6 +11,9 @@ module.exports = {
     secretKey: 'ifchange',
     // cluster
     processNum: 1,
+    express:{
+        'jsonp callback name': 'cb'
+    },
     // folder setting  WARN: you'd better don't change this setting
     viewDir: cwd + '/views',
     controllerDir: cwd + '/controllers',
