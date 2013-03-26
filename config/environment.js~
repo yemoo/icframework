@@ -1,9 +1,5 @@
 var cwd = process.cwd();
 
-var viewDir = cwd + '/views',
-    ctrlDir = cwd + '/controllers',
-    configDir = cwd + '/config';
-
 module.exports = {
     env: 'development',
     hostname: '',
@@ -13,20 +9,16 @@ module.exports = {
     viewCache: true,
     // cookie/session secret key
     secretKey: 'ifchange',
-    // cluster, default 10 child-process
-    processNum: 10,
-    express: {
+    // cluster
+    processNum: 1,
+    express:{
         'case sensitive routing': true,
         'trust proxy': true
     },
-    charset: 'utf-8',
     // folder setting  WARN: you'd better don't change this setting
-    viewDir: viewDir,
-    controllerDir: ctrlDir,
-    configDir: configDir,
-    // moniter dirs/files
-    monitor: [viewDir, ctrlDir, configDir],
-    monitorDelay: 1000,
+    viewDir: cwd + '/views',
+    controllerDir: cwd + '/controllers',
+    configDir: cwd + '/config',
     // TEMP: static folder
     staticDir: cwd + '/public'
 };
