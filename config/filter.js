@@ -1,4 +1,4 @@
 module.exports = {
-	before: {},
-	after: {}
+    before: {},
+    after: {}
 }

@@ -8,7 +8,6 @@
     "dustjs-linkedin": "~1.2.1",
     "async": "~0.2.6",
     "winston": "~0.6.2",
-    "inflection": "~1.2.5",
     "utilities": "0.0.20"
   },
   "main": "index",
