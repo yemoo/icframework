@@ -26,7 +26,7 @@ module.exports = {
     configDir: configDir,
     // moniter dirs/files
     monitor: [viewDir, ctrlDir, configDir],
-    monitorDelay: 1000,
+    monitorDelay: 5000,
     // TEMP: static folder
     staticDir: cwd + '/public'
 };
