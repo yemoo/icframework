@@ -1,5 +1,7 @@
 IfChange Framework
-============================
+==================
+-----
+
 简述
 ----
 icFramework(icframe)是一个基于nodejs及基础web框架express等开源框架/库开发得web前端控制层框架。支持基本得MVC/gearman调用/异步输出等功能，提供一套简易编写web应用的解决方案。目前更是为逸橙内部前端架构需求定制的一个web框架。
@@ -60,7 +62,8 @@ icframework
      1. 首先将icframe注册为全局包，进入icframework目录，运行`sudo npm link`将icframe链接到全局。
      2. 进入项目目录，如icFrameApp，运行`icframe`即可。
   2. 模块引用方式运行
-     1. 进入项目目录。新建一个js文件，如server.js，输入以下代码保存：   
+     1. 进入项目目录。新建一个js文件，如server.js，输入以下代码保存：
+     
        ```
        var icframe = require('icframe');
        icframe.start();
