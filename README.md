@@ -60,7 +60,7 @@ icframework
 * **两种使用方式**
   1. 纯命令行方式运行
      1. 首先将icframe注册为全局包，进入icframework目录，运行`sudo npm link`将icframe链接到全局。
-     2. 进入项目目录，如icFrameApp，运行`icframe`即可。
+     2. 进入项目目录，如icframeapp，运行`icframe`即可。
   2. 模块引用方式运行
      1. 进入项目目录。新建一个js文件，如server.js，输入以下代码保存：
      

@@ -8,13 +8,15 @@
     "dustjs-linkedin": "~1.2.1",
     "async": "~0.2.6",
     "winston": "~0.6.2",
-    "utilities": "0.0.20"
+    "utilities": "0.0.20",
+    "msgpack": "~0.1.8",
+    "printf": "~0.1.1"
   },
   "main": "index",
   "engines": {
     "node": ">=0.10.0"
   },
-  "bin":{
+  "bin": {
     "icframe": "./bin/icframe.js"
   },
   "readmeFilename": "README.md"
