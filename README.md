@@ -38,7 +38,7 @@ icframework
 │   ├── filter.js  // filter配置合并 及 action级别filter的一些处理逻辑
 │   ├── gearman.js // 根据gearman配置初始化gearman并做任务调度，提供全局submitJob接口
 │   ├── icframe.js // 入口文件,读取配置/app,gearman init/多进程管理/文件监控/启动web服务
-│   ├── instancectrl.js  // 为所有控制器实例初始化一些内部变量及icRun/icRender两个方法
+│   ├── ctrlutil.js  // 为所有控制器实例初始化一些内部变量及run/render两个方法
 │   ├── logger.js // 默认的logger实现，及合并用户扩展的logger
 │   ├── node-gearman // gearman官方推荐的node版本实现
 │   └── router.js // 读取router配置文件并解析成容易处理的格式
