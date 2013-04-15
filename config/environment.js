@@ -2,7 +2,8 @@ var cwd = process.cwd();
 
 var viewDir = cwd + '/views',
     ctrlDir = cwd + '/controllers',
-    configDir = cwd + '/config';
+    configDir = cwd + '/config',
+    staticDir = cwd + '/public';
 
 module.exports = {
     env: 'development',
@@ -33,8 +34,8 @@ module.exports = {
     controllerDir: ctrlDir,
     configDir: configDir,
     // moniter dirs/files
-    monitor: [viewDir, ctrlDir, configDir],
+    monitor: [viewDir, ctrlDir, configDir, staticDir],
     monitorDelay: 5000,
     // TEMP: static folder
-    staticDir: cwd + '/public'
+    staticDir: staticDir
 };
