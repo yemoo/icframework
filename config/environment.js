@@ -15,11 +15,19 @@ module.exports = {
     secretKey: 'ifchange',
     // cluster, default 10 child-process
     processNum: 10,
+    //maxReqsPerChild: 1000,
     express: {
         'case sensitive routing': true,
         'trust proxy': true
     },
     charset: 'utf-8',
+    // security
+    security:{
+        global_xss_filtering: true,
+        csrf_protection: true,
+        csrf_token_name: '_csrf',
+        utf8_enable: true
+    },
     // folder setting  WARN: you'd better don't change this setting
     viewDir: viewDir,
     controllerDir: ctrlDir,
