@@ -35,7 +35,7 @@ module.exports = {
         utf8_enable: true
     },
     gearman: {
-        clientNum: 50,
+        clientNum: 20,
         maxClientNum: 100,
         timeout: 10000 // ms
     },
