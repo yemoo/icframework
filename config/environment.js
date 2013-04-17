@@ -35,8 +35,8 @@ module.exports = {
         utf8_enable: true
     },
     gearman: {
-        clientNum: 10,
-        maxClientNum: 20,
+        clientNum: 50,
+        maxClientNum: 100,
         timeout: 10000 // ms
     },
     // folder setting  WARN: you'd better don't change this setting
