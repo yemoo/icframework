@@ -9,6 +9,9 @@ module.exports = {
     env: 'development',
     hostname: '',
     port: 3000,
+    // cluster, default 10 child-process
+    processNum: 10,
+    //maxReqsPerChild: 1000,
     gzip: true,
     viewEngineMap: {
         'dust': function(engines) {
@@ -20,9 +23,7 @@ module.exports = {
     viewCache: true,
     // cookie/session secret key
     secretKey: 'ifchange',
-    // cluster, default 10 child-process
-    processNum: 10,
-    //maxReqsPerChild: 1000,
+    sessionStore: undefined, 
     express: {
         'case sensitive routing': true,
         'trust proxy': true
@@ -35,10 +36,13 @@ module.exports = {
         csrf_token_name: '_csrf',
         utf8_enable: true
     },
+    logger: undefined,
     gearman: {
         clientNum: 20,
         maxClientNum: 100,
-        timeout: 10000 // ms
+        timeout: 10000, // ms
+        prefix: '',
+        suffix: ''
     },
     // folder setting  WARN: you'd better don't change this setting
     viewDir: viewDir,

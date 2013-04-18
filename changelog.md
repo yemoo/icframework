@@ -1,3 +1,17 @@
+[2013-04-18]
+* add: gearman job prefix/suffix
+* add: request logger config
+* add: session storage config
+* add: auto set processNum=cpu num when processing num less than 1
+* update: restart a new workers when a worker was exit unnormally
+* add: config gzip
+
+[2013-04-17]
+* update: change worker cache form array->object, remove iterate in exit event
+* add: wait the worker finish its task before close the worker
+* catch and record process exit and exception events
+* monitor a request running time and memory useage for preformance analysis
+
 [2013-04-16]
 * update: merge gearman/viewEngineMap config to environment config file
 * add: attemp implement submitJob Cache // temp comment the implement
