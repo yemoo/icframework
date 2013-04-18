@@ -1,10 +1,14 @@
 [2013-04-18]
-* add: gearman job prefix/suffix
-* add: request logger config
-* add: session storage config
-* add: auto set processNum=cpu num when processing num less than 1
-* update: restart a new workers when a worker was exit unnormally
-* add: config gzip
+* add: gearman支持配置jobname的前缀与后缀
+* add: 增加请求日志模块，可自行配置格式及存储位置等
+* add: 支持配置session存储方式
+* add: 当设置的ProcessNum小于1时，自动设置为cpu的数目
+* update: 当一个worker异常推出时，自动启动一个新的worker
+* add: 可配置是否开启gzip
+* update: filter.js: 修改gearman返回数据的封装结构，同时统一gearman.js超时错误与服务端返回错误一致的格式
+* update: 修改filter.js/router.js中关于配置读取的程度，统一使用configUtil.loadConfig方式读取
+* update: 将框架中filter.js中的gearman.submitJob实现移到app中
+* update: 解决ctrlUtil.render不传入data参数报错的问题 
 
 [2013-04-17]
 * update: change worker cache form array->object, remove iterate in exit event
