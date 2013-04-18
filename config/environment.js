@@ -9,6 +9,7 @@ module.exports = {
     env: 'development',
     hostname: '',
     port: 3000,
+    gzip: true,
     viewEngineMap: {
         'dust': function(engines) {
             return engines.dust;
@@ -46,6 +47,8 @@ module.exports = {
     // moniter dirs/files
     monitor: [viewDir, ctrlDir, configDir, staticDir],
     monitorDelay: 5000,
+    // server request monitor
+    monitorReq: false,
     // TEMP: static folder
     staticDir: staticDir
 };
