@@ -8,9 +8,9 @@ var viewDir = cwd + '/views',
 module.exports = {
     env: 'development',
     hostname: '',
-    port: 3000,
-    // cluster, default 10 child-process
-    processNum: 10,
+    port: 80,
+    timeout: 60000, // 1 min
+    processNum: -1, // cluster, default user cpus number 
     //maxReqsPerChild: 1000,
     gzip: true,
     viewEngineMap: {
@@ -18,12 +18,10 @@ module.exports = {
             return engines.dust;
         }
     },
-    // default view Engine
-    viewEngine: 'dust',
+    viewEngine: 'dust', // default view Engine
     viewCache: true,
-    // cookie/session secret key
-    secretKey: 'ifchange',
-    sessionStore: undefined, 
+    secretKey: 'ifchange', // cookie/session secret key
+    sessionStore: undefined, // session store config [function]
     express: {
         'case sensitive routing': true,
         'trust proxy': true
@@ -48,11 +46,12 @@ module.exports = {
     viewDir: viewDir,
     controllerDir: ctrlDir,
     configDir: configDir,
-    // moniter dirs/files
-    monitor: [viewDir, ctrlDir, configDir, staticDir],
+
+    monitor: [viewDir, ctrlDir, configDir, staticDir], // monitor dirs/files
     monitorDelay: 5000,
-    // server request monitor
-    monitorReq: false,
-    // TEMP: static folder
+
+    monitorReq: false, // server request monitor
+
+    // static folder
     staticDir: staticDir
 };

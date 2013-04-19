@@ -1,3 +1,12 @@
+[2013-04-19]
+* update: 修改默认processNum为默认读取cpu数目
+* update: 修改application.js中对url路由解析的逻辑，提供更灵活的解析机制和更简化的代码i
+* update: 修改配置路由的一些格式，采用类似urlrewrite格式定义，callback改为mappedUrl
+* update: 修改ctrlUtil.render内部实现，支持data为function格式，同时自动将非object/string格式转换为string
+* fixed: 解决res.render/json/jsonp/send数据时无法正常输入到页面的问题（重写四个方法，调用时自动设置async模式为true）
+* fixed: 解决res.render数据为object，同时找不到模板时报错问题（改为send(json输出)）
+* add: config.timeout, 设置一个请求最长响应时间，默认为1分钟
+
 [2013-04-18]
 * add: gearman支持配置jobname的前缀与后缀
 * add: 增加请求日志模块，可自行配置格式及存储位置等
@@ -8,7 +17,7 @@
 * update: filter.js: 修改gearman返回数据的封装结构，同时统一gearman.js超时错误与服务端返回错误一致的格式
 * update: 修改filter.js/router.js中关于配置读取的程度，统一使用configUtil.loadConfig方式读取
 * update: 将框架中filter.js中的gearman.submitJob实现移到app中
-* update: 解决ctrlUtil.render不传入data参数报错的问题 
+* fixed: 解决ctrlUtil.render不传入data参数报错的问题 
 
 [2013-04-17]
 * update: change worker cache form array->object, remove iterate in exit event
