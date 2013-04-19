@@ -38,7 +38,7 @@ module.exports = {
     gearman: {
         clientNum: 20,
         maxClientNum: 100,
-        timeout: 10000, // ms
+        timeout: 3000, // ms
         prefix: '',
         suffix: ''
     },

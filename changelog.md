@@ -7,6 +7,7 @@
 * fixed: 解决res.render数据为object，同时找不到模板时报错问题（改为send(json输出)）
 * add: config.timeout, 设置一个请求最长响应时间，默认为1分钟
 * fixed: 解决通过res.end('xxxx')无法输出数据到页面的问题，将res.end的参数传递给res.write再执行res.end(). [第二种结局方案：将带参数res.end请求设置async=true]
+* update: 修改gearman默认超时时间为3s
 
 [2013-04-18]
 * add: gearman支持配置jobname的前缀与后缀
