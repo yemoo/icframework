@@ -18,31 +18,31 @@
 * add: 可配置是否开启gzip
 * update: filter.js: 修改gearman返回数据的封装结构，同时统一gearman.js超时错误与服务端返回错误一致的格式
 * update: 修改filter.js/router.js中关于配置读取的程度，统一使用configUtil.loadConfig方式读取
-* update: 将框架中filter.js中的gearman.submitJob实现移到app中
+* update: 将框架中filter.js中的gearman.submitJob实现移到app的filter中
 * fixed: 解决ctrlUtil.render不传入data参数报错的问题 
 
 [2013-04-17]
-* update: change worker cache form array->object, remove iterate in exit event
-* add: wait the worker finish its task before close the worker
-* catch and record process exit and exception events
-* monitor a request running time and memory useage for preformance analysis
+* update: 将worker缓存的实现由Array换成Object，队列中worker的删除改为由cluster自己控制。
+* add: 关闭一个worker前等待其自身处理完成当前进程的任务，如果超时则强制退出
+* add: 捕获并纪录cluster/woker进程的异常和退出信息到日志中
+* add: 增加对一个请求运行时间和内存消耗的监控，便于分析程序性能
 
 [2013-04-16]
-* update: merge gearman/viewEngineMap config to environment config file
-* add: attemp implement submitJob Cache // temp comment the implement
-* update: change config.js, remove _require method
-* update: change icframe.js, move many icFrame properties to Worker instance only, and other changes 
+* update: 合并gearman及viewEngineMap的配置信息到环境配置中，减少配置文件数
+* add: 实现对submitJob的缓存，避免重复请求，提升性能。PS：暂时先注释了，等需要时再启用代码
+* update: config.js的一些小修改
+* update: 修改icframe.js, 分离cluster/worker代码文件，简化cluster中无效的一些属性，只负责子进程的调度
 
 [2013-04-15]
-* add: bigpipe js
-* add: controller.ctrlUtil bigpipe method support
-* add memwatch
+* add: 实现bigpipe js
+* add: controller.ctrlUtil中支持bigpipe方法，便于编写bigpipe程序
+* add: 增加memwatch做内存分析及监控
 
 [2013-04-09]
-* add icframe.config.ipAddress var
-* change submitJob sencond param: (1) old ways (2){provider: '', params: ''}
-* implement internal gearmand submitJob interface use frame filter
-* use messagepack to send or receive gearman data
-* remove header: x-powered-by;
-* change session-key from default value 'connect.sid' to secretKey + '_SID'
-* fix some gearman.js issues
+* add: 增加ipAddress配置，用于配置服务器IP，默认自行读取
+* update: 改变submitJob方法第二个参数的格式支持: (1) 数据 (2){provider: 所在APP, params: 数据}
+* add: 根据与后端约定的接口对submitJob做二次封装，在filter中实现
+* add: 使用messagepack处理gearman数据的收发
+* update: 删除header: x-powered-by;
+* update: 将session-key由默认的connect.sid改为secretKey + '_SID'
+* fixed: 修改一些gearman.js的问题
