@@ -2,6 +2,7 @@
 * update: router支持:xxx格式的简单匹配符，同时映射的url也支持对应的匹配符，以实现更灵活的url router
 * update: controller不支持下划线开头的方法（原来是不支持双下划线开头格式）
 * update: 修改monitor配置项为object格式，支持用不同的key配置多个，每个配置格式可为函数，字符串或者数组，框架自动合并结果为数组。
+* add: 增加对node安装版本的检测，读取package.json中配置的最小版本node号来对比当前所安装版本
 
 [2013-04-19]
 * update: 修改默认processNum为默认读取cpu数目
