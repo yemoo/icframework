@@ -1,3 +1,7 @@
+[2013-04-22]
+* update: router支持:xxx格式的简单匹配符，同时映射的url也支持对应的匹配符，以实现更灵活的url router
+* update: controller不支持下划线开头的方法（原来是不支持双下划线开头格式）
+
 [2013-04-19]
 * update: 修改默认processNum为默认读取cpu数目
 * update: 修改application.js中对url路由解析的逻辑，提供更灵活的解析机制和更简化的代码i
