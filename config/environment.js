@@ -46,12 +46,15 @@ module.exports = {
     viewDir: viewDir,
     controllerDir: ctrlDir,
     configDir: configDir,
-
-    monitor: [viewDir, ctrlDir, configDir, staticDir], // monitor dirs/files
+    // monitor dirs/files
+    monitor: {
+        'default': function(config) {
+            return [viewDir, ctrlDir, configDir, staticDir];
+        }
+    },
     monitorDelay: 5000,
-
-    monitorReq: false, // server request monitor
-
+    // server request monitor
+    monitorReq: false, 
     // static folder
     staticDir: staticDir
 };
