@@ -6,7 +6,7 @@ var viewDir = cwd + '/views',
     //staticDir = cwd + '/public';
 
 module.exports = {
-    env: 'development',
+    env: 'production',
     hostname: '',
     port: 80,
     timeout: 60000, // 1 min
@@ -14,11 +14,11 @@ module.exports = {
     //maxReqsPerChild: 1000,
     gzip: true,
     viewEngineMap: {
-        'dust': function(engines) {
+        'html': function(engines) {
             return engines.dust;
         }
     },
-    viewEngine: 'dust', // default view Engine
+    viewEngine: 'html', // default view Engine
     viewCache: true,
     secretKey: 'ifchange', // cookie/session secret key
     sessionStore: undefined, // session store config [function]

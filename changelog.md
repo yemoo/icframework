@@ -5,6 +5,7 @@
 * add: 增加对node安装版本的检测，读取package.json中配置的最小版本node号来对比当前所安装版本
 * update: 默认关闭csrf_protection
 * update: 框架默认不设置staticDir
+* update: 默认模板后缀改为html, 默认env为production
 
 [2013-04-19]
 * update: 修改默认processNum为默认读取cpu数目
