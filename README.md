@@ -130,12 +130,12 @@ icframe.start();
 ### 路由配置
 #### 默认路由解析机制
   对于一个URL，首先提取path内容（如http://192.168.1.150:4000/hunter/positions/show?id=2的path为hunter/positions/show）
-  * 处理程序Controller/action路由机制： 
+  * **处理程序(Controller/action)路由机制**  
     1. 首先假设最后一级路径为action，前一级为controller（即文件名，如positions.js），之前的路径为目录，按照此方法寻找此controller及是否有对应的action。
     2. 如果方式1中寻找不到controller文件或者controller中无对应action定义，则假设action为index，最后一级为controller，之前路径为目录。
     3. 注：在方式1/2中，如果path中没有controller或者action部分，则默认为index。如"/" 对应index.js中的index方法，“/users”对应index.js中users方法，或者users.js中的index方法。
     4. 如果找到解析的程序，则进行处理，否则返回404错误。
-  * 模板路径路由机制：
+  * **模板路径路由机制**  
     view解析机制比较简单，一般直接采用“模板目录+path+‘.’+默认后缀”的方法查找。
   
 #### 自定义路由解析
