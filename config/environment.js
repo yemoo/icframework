@@ -30,7 +30,7 @@ module.exports = {
     // security
     security: {
         global_xss_filtering: true,
-        csrf_protection: true,
+        csrf_protection: false,
         csrf_token_name: '_csrf',
         utf8_enable: true
     },
