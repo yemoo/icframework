@@ -95,19 +95,19 @@ icframe.start();
   * **gzip：** 是否开启gzip压缩。 *默认为true*
   * **viewEngineMap：** 支持的模版引擎配置，该配置的值为Object格式；每个键值对的KEY代表模版后缀名，VALUE为该后缀模版的解析引擎（一般为function，该function默认接收一个参数engines，即[consolidate对象](https://github.com/visionmedia/consolidate.js)，该插件默认支持很多模版引擎，具体可参看其文档）。 *默认配置（只支持[dustjs-linkedin](https://github.com/linkedin/dustjs)）为：* `
        viewEngineMap: {
-          'dust': function(engines) {
+          'html': function(engines) {
               return engines.dust;
           }
       }
      `
-  * **viewEngine：** 默认的模版引擎（后缀），当程序中调用模版未写模板后缀时自动使用此处配置的后缀。 *默认为dust*
+  * **viewEngine：** 默认的模版引擎（后缀），当程序中调用模版未写模板后缀时自动使用此处配置的后缀。 *默认为html
   * **viewCache：** 是否缓存模版（启用缓存可避免每次模版渲染都从文件系统调用）。 *默认为true*
   * **secretKey：** cookie/session加密key，用于防止客户端伪造cookie。 *默认为ifchange*
   * **sessionStore：** session存储方式，为了实现分布式等部署，可能要配置为数据库或者memcache来存储session。 *默认为内存存储方式* 此配置项的类型为function，该function默认接收一个参数express，该function要返回一个存储类型实例。具体可参看[connect.session](http://www.senchalabs.org/connect/session.html)介绍，更多的第三方session存储实现可参看[此页](https://github.com/senchalabs/connect/wiki)Session Store部分。
   * **charset：** 项目文件编码类型。 *默认为utf-8*
   * **security：** 安全配置项，该配置项下有4个子配置项。
     * **global_xss_filtering：** 是否全局启用XSS过滤。 *默认为true*
-    * **csrf_protection：** 是否全局启用CSRF保护机制，启用后所有表单提交都必须有token隐藏域。 *默认为true*
+    * **csrf_protection：** 是否全局启用CSRF保护机制，启用后所有表单提交都必须有token隐藏域。 *默认为false*
     * **csrf_token_name：** CSRF参数的名称，用于表单隐藏域的name，一般无需修改。 *默认为_token*
     * **utf8_enable：** 是否过滤请求信息中的非utf-8字符。 *默认为true*
   * **express：** 该配置的值为object，用于设置express的[配置](http://expressjs.com/api.html#app-settings)。当express配置和框架配置项含义一样时（如env,viewEngine,viewCache,views），框架配置优先。
@@ -122,8 +122,7 @@ icframe.start();
   * **viewDir：** 模版目录。 *默认为views*
   * **controllerDir：** 控制器程序目录。 *默认为controllers*
   * **[configDir：]** 配置文件目录。**该项不可修改**。 *默认值为config目录*
-  * **monitor：** 监控的文件（夹），格式为数组。该配置中文件变化时会自动重启服务。 *默认为viewDir/controllerDir/configDir。
-  * **extraMonitor：** 同monitor，一般用于在默认监控内容基础上增加一些监控文件（夹），格式为数组。框架在启动解析配置时会自动合并该配置与monitor。
+  * **monitor：** 监控的文件（夹），格式为object，支持用不同的key配置多个，每个配置的value格式可为函数(函数接收一个config参数可以取到所有配置项)，字符串或者数组，框架自动合并结果为数组。该配置中文件变化时会自动重启服务。 *默认key->value为default=>viewDir/controllerDir/configDir。
   * **monitorDelay：** 监控检查间隔时间。 *默认为5000（5秒）*
   * **monitorReq：** 是否监控每个请求处理器执行时间及内存消耗，一般用于查看程序性能。 *默认为false*
 
