@@ -1,7 +1,7 @@
 {
   "name": "icframe",
   "description": "ifchange Controller FrameWork",
-  "version": "0.1.0",
+  "version": "0.1.3-beta",
   "dependencies": {
     "express": "3.x",
     "consolidate": "~0.8.0",
@@ -21,5 +21,20 @@
   "bin": {
     "icframe": "./bin/icframe.js"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "gitHead": "07e7efabcbbd136b10d6c8fac7fd8342a2a52623",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yemoo/icframework.git"
+  },
+  "keywords": [
+    "ifchange",
+    "icframework"
+  ],
+  "author": "ifchange",
+  "license": "BSD"
 }
