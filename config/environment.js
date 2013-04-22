@@ -49,7 +49,7 @@ module.exports = {
     // monitor dirs/files
     monitor: {
         'default': function(config) {
-            return [viewDir, ctrlDir, configDir, staticDir];
+            return [viewDir, ctrlDir, configDir];
         }
     },
     monitorDelay: 5000,
