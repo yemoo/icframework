@@ -35,6 +35,7 @@ module.exports = {
         utf8_enable: true
     },
     logger: undefined,
+    debug: false,
     gearman: {
         clientNum: 20,
         maxClientNum: 100,
