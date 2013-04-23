@@ -54,8 +54,6 @@ module.exports = {
         }
     },
     monitorDelay: 5000,
-    // server request monitor
-    monitorReq: false, 
     // static folder
     //staticDir: staticDir
 };

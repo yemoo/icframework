@@ -1,5 +1,10 @@
 [2013-04-23]
 * add: 增加debug配置项，便于输出程序内的调试信息。
+* update: 删除monitorReq配置项，和debug配置合并。所有debug信息都通过logger.debug输出
+* add: ctrlUtil增加验证方法check/sanitize两个快捷方法（icFrame.validator.check/sanitize）
+* update: 修改req上的__ctrlUtil__为ctrlUtil，便于书写。
+* update: 控制器支持action为非函数（将作为response内容直接输出），支持配置方法值为'SHOW_VIEW'直接调用模板
+* update: 修改ctrlUtil上的双下划线方法名为单下划线，统一单下划线为私有方法 
 
 [2013-04-22]
 * update: router支持:xxx格式的简单匹配符，同时映射的url也支持对应的匹配符，以实现更灵活的url router
