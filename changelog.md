@@ -3,6 +3,10 @@
 * add: 支持在控制器中通过this._LOCALS配置该控制器中所有action公共的模板变量
 * update: 更改控制器中DISABLED_FILTERS为_DISABLED_FILTERS，避免过滤器被url访问。
 * update: 取消访问下划线开头action跳转到index的处理，直接返回404
+* update: 将ctrl中的async属性分为chunked/async两个，chunked适用于bigpipe模式html页面组织（调用ctrlUril.run方法）
+* update: 解决res.send/json/jsonp方法调用时报header已经设置的错误
+* update: 修改res.render的封装，有回调函数则采用chunked模式直接输出header，否则不设置header，以与res.render本身逻辑相符
+* update: res.end支持输出任何数据格式
 
 [2013-04-23]
 * add: 增加debug配置项，便于输出程序内的调试信息。
