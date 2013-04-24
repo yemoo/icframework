@@ -3,7 +3,7 @@ var cwd = process.cwd();
 var viewDir = cwd + '/views',
     ctrlDir = cwd + '/controllers',
     configDir = cwd + '/config'; //,
-    //staticDir = cwd + '/public';
+//staticDir = cwd + '/public';
 
 module.exports = {
     env: 'production',
@@ -44,7 +44,7 @@ module.exports = {
         suffix: ''
     },
     // global variables
-    locals:{},
+    locals: undefined,
     // folder setting  WARN: you'd better don't change this setting
     viewDir: viewDir,
     controllerDir: ctrlDir,
