@@ -43,6 +43,8 @@ module.exports = {
         prefix: '',
         suffix: ''
     },
+    // global variables
+    locals:{},
     // folder setting  WARN: you'd better don't change this setting
     viewDir: viewDir,
     controllerDir: ctrlDir,

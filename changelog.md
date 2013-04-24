@@ -1,3 +1,9 @@
+[2013-04-24]
+* add: 支持全局配置中配置locals配置项，用于全局模板变量
+* add: 支持在控制器中通过this._LOCALS配置该控制器中所有action公共的模板变量
+* update: 更改控制器中DISABLED_FILTERS为_DISABLED_FILTERS，避免过滤器被url访问。
+* update: 取消访问下划线开头action跳转到index的处理，直接返回404
+
 [2013-04-23]
 * add: 增加debug配置项，便于输出程序内的调试信息。
 * update: 删除monitorReq配置项，和debug配置合并。所有debug信息都通过logger.debug输出
