@@ -7,18 +7,21 @@ var reqKeys = ['params', 'query', 'body', 'cookies', 'signedCookies',
 module.exports = {
     before: {
         // for controller level template variables
-        'LOCALS': function(req, res) {
-            var locals = this._LOCALS, reqData = {};
+        'TPL_DATA': function(req, res) {
+            var locals = this._LOCALS,
+                reqData = {};
+
+            reqKeys.forEach(function(key) {
+                reqData[key] = req[key];
+            });
+            res.locals['req'] = reqData;
+
             if (typeof locals == 'object') {
                 Object.keys(locals).forEach(function(key) {
                     res.locals[key] = locals[key];
                 });
             }
 
-            reqKeys.forEach(function(key){
-                reqData[key] = req[key];
-            });
-            res.locals['req'] = reqData;
         }
     },
     after: {}
