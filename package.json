@@ -13,7 +13,8 @@
     "validator": "~0.5.0",
     "iconv": "~2.0.4",
     "memwatch": "~0.2.2",
-    "semver": "~1.1.4"
+    "semver": "~1.1.4",
+    "gearman": "git://github.com/mreinstein/node-gearman.git"
   },
   "main": "index",
   "engines": {

@@ -7,6 +7,7 @@
 * update: 解决res.send/json/jsonp方法调用时报header已经设置的错误
 * update: 修改res.render的封装，有回调函数则采用chunked模式直接输出header，否则不设置header，以与res.render本身逻辑相符
 * update: res.end支持输出任何数据格式
+* update: 将node-gearman模块移到node-modules中，并加入package.json，同时修改gearman.js的引用
 
 [2013-04-23]
 * add: 增加debug配置项，便于输出程序内的调试信息。
