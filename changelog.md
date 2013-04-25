@@ -1,5 +1,6 @@
 [2013-03-25]
 * add: 当服务所用端口被占用时，提示用户并终止当前进程
+* change: 修改node-validator为express-validator，与express更好集成
 
 [2013-04-24]
 * add: 支持全局配置中配置locals配置项，用于全局模板变量

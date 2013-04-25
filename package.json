@@ -10,11 +10,11 @@
     "utilities": "0.0.20",
     "msgpack": "~0.1.8",
     "printf": "~0.1.1",
-    "validator": "~0.5.0",
     "iconv": "~2.0.4",
     "memwatch": "~0.2.2",
     "semver": "~1.1.4",
-    "gearman": "git://github.com/mreinstein/node-gearman.git"
+    "gearman": "git://github.com/mreinstein/node-gearman.git",
+    "express-validator": "~0.3.2"
   },
   "main": "index",
   "engines": {
