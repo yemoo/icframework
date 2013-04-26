@@ -22,6 +22,16 @@ module.exports = {
                 });
             }
 
+            req.addTplData = function(key, value) {
+                if (typeof key == 'object') {
+                    Object.keys(key).forEach(function(name) {
+                        res.locals[name] = key[name];
+                    });
+                } else {
+                    res.locals[key] = value;
+                }
+            };
+
         }
     },
     after: {}

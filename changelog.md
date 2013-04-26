@@ -1,4 +1,8 @@
-[2013-03-25]
+[2013-04-26]
+* add: ctrlUtil增加对validator的引用
+* add: 增加req.addTplData(key, value) | addTplData(obj)方法，便于设置模板变量;
+
+[2013-04-25]
 * add: 当服务所用端口被占用时，提示用户并终止当前进程
 * change: 修改node-validator为express-validator，与express更好集成
 
