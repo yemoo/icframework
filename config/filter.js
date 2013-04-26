@@ -22,7 +22,7 @@ module.exports = {
                 });
             }
 
-            req.addTplData = function(key, value) {
+            res.addTplData = function(key, value) {
                 if (typeof key == 'object') {
                     Object.keys(key).forEach(function(name) {
                         res.locals[name] = key[name];
