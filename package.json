@@ -4,7 +4,6 @@
   "version": "0.1.4-beta",
   "dependencies": {
     "express": "3.x",
-    "consolidate": "~0.8.0",
     "dustjs-linkedin": "~1.2.1",
     "winston": "~0.6.2",
     "utilities": "0.0.20",
@@ -14,7 +13,9 @@
     "memwatch": "~0.2.2",
     "semver": "~1.1.4",
     "gearman": "git://github.com/mreinstein/node-gearman.git",
-    "express-validator": "~0.3.2"
+    "express-validator": "~0.3.2",
+    "consolidate": "~0.9.0",
+    "just": "~0.1.8"
   },
   "main": "index",
   "engines": {

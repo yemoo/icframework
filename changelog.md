@@ -3,6 +3,11 @@
 * add: 增加res.addTplData(key, value) | addTplData(obj)方法，便于设置模板变量;
 * update: 修改cookie.secertKey为cookie:{secert: 'xxx'}
 * update: 合并session.secertKey与sessionStore到session配置中，直接配置connect-session的配置项
+* update: 调整woker.js中的代码组织方式
+* update: 修改config中模板的配置方式，不使用function配置
+* add: 添加just模板引擎 
+* update: ctrlUtil.render传入模板时也做一次有效性检查，无效则尝试读取默认模板
+* update: 将session.store的解析放到config中
 
 [2013-04-25]
 * add: 当服务所用端口被占用时，提示用户并终止当前进程

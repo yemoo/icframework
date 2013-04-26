@@ -1,9 +1,8 @@
-var cwd = process.cwd();
-
-var viewDir = cwd + '/views',
+var cwd = process.cwd(),
+    consolidate = require('consolidate'),
+    viewDir = cwd + '/views',
     ctrlDir = cwd + '/controllers',
-    configDir = cwd + '/config'; //,
-//staticDir = cwd + '/public';
+    configDir = cwd + '/config';
 
 module.exports = {
     env: 'production',
@@ -14,9 +13,8 @@ module.exports = {
     //maxReqsPerChild: 1000,
     gzip: true,
     viewEngineMap: {
-        'html': function(engines) {
-            return engines.dust;
-        }
+        'html': consolidate.dust,
+        'just': consolidate.just
     },
     viewEngine: 'html', // default view Engine
     viewCache: true,
