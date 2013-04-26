@@ -8,6 +8,7 @@
 * add: 添加just模板引擎 
 * update: ctrlUtil.render传入模板时也做一次有效性检查，无效则尝试读取默认模板
 * update: 将session.store的解析放到config中
+* update: 修改config.monitor中默认配置的监控文件引用方式
 
 [2013-04-25]
 * add: 当服务所用端口被占用时，提示用户并终止当前进程

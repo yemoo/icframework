@@ -1,8 +1,5 @@
 var cwd = process.cwd(),
-    consolidate = require('consolidate'),
-    viewDir = cwd + '/views',
-    ctrlDir = cwd + '/controllers',
-    configDir = cwd + '/config';
+    consolidate = require('consolidate');
 
 module.exports = {
     env: 'production',
@@ -49,13 +46,13 @@ module.exports = {
     // global variables
     locals: undefined,
     // folder setting  WARN: you'd better don't change this setting
-    viewDir: viewDir,
-    controllerDir: ctrlDir,
-    configDir: configDir,
+    viewDir: cwd + '/views',
+    controllerDir: cwd + '/controllers',
+    configDir: cwd + '/config',
     // monitor dirs/files
     monitor: {
         'default': function(config) {
-            return [viewDir, ctrlDir, configDir];
+            return [config.viewDir, config.ctrlDir, config.configDir];
         }
     },
     monitorDelay: 5000,
