@@ -20,8 +20,13 @@ module.exports = {
     },
     viewEngine: 'html', // default view Engine
     viewCache: true,
-    secretKey: 'ifchange', // cookie/session secret key
-    sessionStore: undefined, // session store config [function]
+    cookie: {
+        secret: 'ICFRAME'
+    },
+    session: {
+        secret: 'ICFRAME',
+        key: 'ICFRAME_SID'
+    },
     express: {
         'case sensitive routing': true,
         'trust proxy': true

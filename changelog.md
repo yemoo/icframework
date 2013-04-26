@@ -1,6 +1,8 @@
 [2013-04-26]
 * add: ctrlUtil增加对validator的引用
 * add: 增加res.addTplData(key, value) | addTplData(obj)方法，便于设置模板变量;
+* update: 修改cookie.secertKey为cookie:{secert: 'xxx'}
+* update: 合并session.secertKey与sessionStore到session配置中，直接配置connect-session的配置项
 
 [2013-04-25]
 * add: 当服务所用端口被占用时，提示用户并终止当前进程
