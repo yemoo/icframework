@@ -15,6 +15,7 @@ module.exports = {
     },
     viewEngine: 'html', // default view Engine
     viewCache: true,
+    viewRenderTimeout: 2000, 
     cookie: {
         secret: 'ICFRAME'
     },

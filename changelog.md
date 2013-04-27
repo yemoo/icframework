@@ -1,3 +1,8 @@
+[2013-04-27]
+* add: 增加对模板解析超时的处理，避免模板设置不对或者内部出错等问题，
+* add: 增加设置模板解析超时时间viewRenderTimeout，默认2000
+* add: 模板渲染出错输出错误信息到页面
+
 [2013-04-26]
 * add: ctrlUtil增加对validator的引用
 * add: 增加res.addTplData(key, value) | addTplData(obj)方法，便于设置模板变量;
