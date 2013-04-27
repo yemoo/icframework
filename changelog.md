@@ -10,6 +10,7 @@
 * update: 修改config.controllerDir为config.ctrlpath
 * update: 删除config.configDir，修改config.mixConfig方法，支持传入第三个参数shortpath，自动合并configpath路径再查找
 * add: 引入commander，支持命令行参数，-h, -v, -p等
+* update: 修改session.cookie.expires设置问题，只能设置为数字类型，不能是date类型
 
 [2013-04-26]
 * add: ctrlUtil增加对validator的引用
