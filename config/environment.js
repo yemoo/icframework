@@ -6,16 +6,20 @@ module.exports = {
     hostname: '',
     port: 80,
     timeout: 60000, // 1 min
-    processNum: -1, // cluster, default user cpus number 
-    //maxReqsPerChild: 1000,
     gzip: true,
-    viewEngineMap: {
-        'html': consolidate.dust,
-        'just': consolidate.just
+    // view config
+    view: {
+        engines: {
+            'html': consolidate.dust,
+            'just': consolidate.just
+        },
+        defaultEngine: 'html',
+        cache: true,
+        timeout: 2000,
+        path: cwd + '/views',
+        // global variables
+        data: undefined
     },
-    viewEngine: 'html', // default view Engine
-    viewCache: true,
-    viewRenderTimeout: 2000, 
     cookie: {
         secret: 'ICFRAME'
     },
@@ -44,19 +48,6 @@ module.exports = {
         prefix: '',
         suffix: ''
     },
-    // global variables
-    locals: undefined,
-    // folder setting  WARN: you'd better don't change this setting
-    viewDir: cwd + '/views',
-    controllerDir: cwd + '/controllers',
-    configDir: cwd + '/config',
-    // monitor dirs/files
-    monitor: {
-        'default': function(config) {
-            return [config.viewDir, config.controllerDir, config.configDir];
-        }
-    },
-    monitorDelay: 5000,
-    // static folder
-    //staticDir: staticDir
+    // path setting 
+    ctrlpath: cwd + '/controllers'
 };

@@ -2,6 +2,14 @@
 * add: 增加对模板解析超时的处理，避免模板设置不对或者内部出错等问题，
 * add: 增加设置模板解析超时时间viewRenderTimeout，默认2000
 * add: 模板渲染出错输出错误信息到页面
+* add: 增加dustjs-helper插件
+* update: 删除monitor配置，使用watch模块做整个目录的监控
+* update: 删除processNum参数，改为命令行传递，默认为cpu数目
+* update: 修改logger.console，增加第三个参数可传入一个标题
+* update: 修改配置，将locals/viewDir/viewCache/viewEngine/viewEngineMap合并到view中
+* update: 修改config.controllerDir为config.ctrlpath
+* update: 删除config.configDir，修改config.mixConfig方法，支持传入第三个参数shortpath，自动合并configpath路径再查找
+* add: 引入commander，支持命令行参数，-h, -v, -p等
 
 [2013-04-26]
 * add: ctrlUtil增加对validator的引用
