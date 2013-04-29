@@ -1,3 +1,12 @@
+[2013-04-29]
+* update: 删除defaultEngine配置项，读取engines中的第一个key作为defaultEngine。 寻找模板文件时按照配置engines keys顺序寻找。
+* update: 解决url路径中多个斜线导致解析失败的问题
+* fixed: 修复模板超时报错的一些错误逻辑
+* update: 修改res.end/res.write的一些错误处理逻辑，res.end不再支持非字符串参数。
+* update: 修改ctrlUtil.run中的错误导致bigpipe失效的问题
+* update: gearman对background任务的处理逻辑，解决gearman执行回调函数异常时报job timeout的错误的问题
+* update: 文件监控的修改，支持view/controller在应用外不能监控的问题，同时避免文件重复监控。
+
 [2013-04-27]
 * add: 增加对模板解析超时的处理，避免模板设置不对或者内部出错等问题，
 * add: 增加设置模板解析超时时间viewRenderTimeout，默认2000
