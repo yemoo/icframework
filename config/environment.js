@@ -13,7 +13,6 @@ module.exports = {
             'html': consolidate.dust,
             'just': consolidate.just
         },
-        defaultEngine: 'html',
         cache: true,
         timeout: 2000,
         path: cwd + '/views',
