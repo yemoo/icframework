@@ -1,3 +1,7 @@
+[2013-04-30]
+* fixed: 修正部分情况下调用res.send()时不能正确输出content-type的问题
+* update: 优化icframe的代码结构
+
 [2013-04-29]
 * update: 删除defaultEngine配置项，读取engines中的第一个key作为defaultEngine。 寻找模板文件时按照配置engines keys顺序寻找。
 * update: 解决url路径中多个斜线导致解析失败的问题
