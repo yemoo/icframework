@@ -1,6 +1,7 @@
 [2013-05-01]
 * 修改gearman输出callback错误信息为错误堆栈，将submitJob默认值设置为{}，否则如果为null时，node-gearman会报错
 * 扩展res.sendError(err)方法，便于输出一些特定的错误到页面，与connect的报错一致
+* 修改配置名称logger为accesslog，配置服务器请求日志。修改logger.js的实现，内置logger更简单，复杂的logger由应用自己实现
 
 [2013-04-30]
 * fixed: 修正部分情况下调用res.send()时不能正确输出content-type的问题

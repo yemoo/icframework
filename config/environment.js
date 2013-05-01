@@ -38,7 +38,12 @@ module.exports = {
         csrf_token_name: '_csrf',
         utf8_enable: true
     },
-    logger: undefined,
+    accesslog: {
+        //format: 'default',
+        //buffer: false,
+        //stream: false,
+        //immediate: false
+    },
     debug: false,
     gearman: {
         clientNum: 20,
