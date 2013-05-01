@@ -1,3 +1,7 @@
+[2013-05-01]
+* 修改gearman输出callback错误信息为错误堆栈，将submitJob默认值设置为{}，否则如果为null时，node-gearman会报错
+* 扩展res.sendError(err)方法，便于输出一些特定的错误到页面，与connect的报错一致
+
 [2013-04-30]
 * fixed: 修正部分情况下调用res.send()时不能正确输出content-type的问题
 * update: 优化icframe的代码结构
