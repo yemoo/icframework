@@ -1,10 +1,13 @@
 [2013-05-02]
-* 支持命令行配置configPath，以便一个框架下可以运行多个应用
+* add: 支持命令行配置-c, --config，以便一个框架下可以运行多个应用
+* add: 支持命令行配置-p, --port，方便快捷设置服务启动的端口号
+* update: 修改configUtil中的一些实现
+* update: 修改gearman的调用方法（改为调用init方法传入config信息来初始化gearman）
 
 [2013-05-01]
-* 修改gearman输出callback错误信息为错误堆栈，将submitJob默认值设置为{}，否则如果为null时，node-gearman会报错
-* 扩展res.sendError(err)方法，便于输出一些特定的错误到页面，与connect的报错一致
-* 修改配置名称logger为accesslog，配置服务器请求日志。修改logger.js的实现，内置logger更简单，复杂的logger由应用自己实现
+* update: 修改gearman输出callback错误信息为错误堆栈，将submitJob默认值设置为{}，否则如果为null时，node-gearman会报错
+* add: 扩展res.sendError(err)方法，便于输出一些特定的错误到页面，与connect的报错一致
+* update: 修改配置名称logger为accesslog，配置服务器请求日志。修改logger.js的实现，内置logger更简单，复杂的logger由应用自己实现
 
 [2013-04-30]
 * fixed: 修正部分情况下调用res.send()时不能正确输出content-type的问题
