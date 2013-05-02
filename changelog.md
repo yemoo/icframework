@@ -1,3 +1,6 @@
+[2013-05-02]
+* 支持命令行配置configPath，以便一个框架下可以运行多个应用
+
 [2013-05-01]
 * 修改gearman输出callback错误信息为错误堆栈，将submitJob默认值设置为{}，否则如果为null时，node-gearman会报错
 * 扩展res.sendError(err)方法，便于输出一些特定的错误到页面，与connect的报错一致
