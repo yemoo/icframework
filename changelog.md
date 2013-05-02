@@ -3,6 +3,7 @@
 * add: 支持命令行配置-p, --port，方便快捷设置服务启动的端口号
 * update: 修改configUtil中的一些实现
 * update: 修改gearman的调用方法（改为调用init方法传入config信息来初始化gearman）
+* add: 支持在logger中的__INIT__中做一些初始化函数定义，便于继承当前logger，并方便扩展
 
 [2013-05-01]
 * update: 修改gearman输出callback错误信息为错误堆栈，将submitJob默认值设置为{}，否则如果为null时，node-gearman会报错
