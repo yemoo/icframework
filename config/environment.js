@@ -53,5 +53,6 @@ module.exports = {
         suffix: ''
     },
     // path setting 
-    ctrlpath: cwd + '/controllers'
+    ctrlpath: cwd + '/controllers',
+    ignorewatch: "/node_modules|.git|.svn|\.log~?/i"
 };
