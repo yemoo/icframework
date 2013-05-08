@@ -1,5 +1,6 @@
 [2013-05-08]
 * fix: 解决security.js中做utf-8转换时icon转换调用错误导致报错问题
+* add: 移除ctrlUtil.runQueue中自动输出head的代码，在并行执行时更好的支持不同的header，res.write第一次调用会自动输出header以支持chunked。
 
 [2013-05-07]
 * update: 解决启动被占用时输出异常信息的问题，改为输出端口占用的提示信息
