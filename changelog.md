@@ -1,3 +1,6 @@
+[2013-05-08]
+* fix: 解决security.js中做utf-8转换时icon转换调用错误导致报错问题
+
 [2013-05-07]
 * update: 解决启动被占用时输出异常信息的问题，改为输出端口占用的提示信息
 * add: 增加对ignorewatch参数，设置忽略监控的文件内容，默认为node_modules/.git/.svn/.log~?
