@@ -1,7 +1,7 @@
 // config before/after filter functions
 // just like write controller.action
 var reqKeys = ['params', 'query', 'body', 'cookies', 'signedCookies',
-    'ip', 'ips', 'protocol', 'domain', 'path', 'host', 'xhr', 'url', 'originalUrl', 'method', 'originalMethod',
+    'ip', 'ips', 'protocol', 'domain', 'path', /*'host', */'xhr', 'url', 'originalUrl', 'method', 'originalMethod',
     'session', 'headers', 'httpVersion'];
 
 module.exports = {
