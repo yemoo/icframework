@@ -2,7 +2,8 @@ var cwd = process.cwd(),
     consolidate = require('consolidate');
 
 module.exports = {
-    uid: false,
+    uid: 99,
+    gid: 99,
     env: 'production',
     hostname: '',
     port: 80,
