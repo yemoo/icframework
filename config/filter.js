@@ -7,7 +7,7 @@ var reqKeys = ['params', 'query', 'body', 'cookies', 'signedCookies',
 module.exports = {
     before: {
         // for controller level template variables
-        'TPL_DATA': function(req, res) {
+        'TPL_DATA': function(req, res, next) {
             var locals = this._LOCALS,
                 reqData = {};
 
@@ -31,7 +31,7 @@ module.exports = {
                     res.locals[key] = value;
                 }
             };
-
+            next();
         }
     },
     after: {}
