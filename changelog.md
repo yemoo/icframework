@@ -1,7 +1,7 @@
 [2013-05-15]
 * before/after支持队列，可以实现串行或者并行
 * 兼容php的session共享方案（实际修改了connect/session）
-* test
+* 解决调用res.end('xxx')不能输出内容的问题。ctrlUtil中做判断Res.isEnded判断
 
 [2013-05-09]
 * add: 增加命令行及配置项的uid/gid参数，配置启动用户及用户组
