@@ -48,11 +48,20 @@ module.exports = {
     },
     debug: false,
     gearman: {
-        clientNum: 20,
-        maxClientNum: 100,
-        timeout: 3000, // ms
-        prefix: '',
-        suffix: ''
+        group: {},
+        config: {
+            initClients: 10,    // 初始化的连接数
+            maxClients: 100,  // 连接池中最大允许的连接数
+
+            timeout: 3000, // job请求超时时长，默认3s
+
+            reconnect: 600000, // 服务器标识为dead多久后尝试重新连接，，默认60s
+            retries: 5, // 尝试连接次数，超过retries次数后标志该服务器为dead状态，默认5次
+            retry: 30000, // 每次尝试连接的间隔时长，默认3s
+
+            prefix: '', // jobName前缀
+            suffix: '' // jobName后缀
+        }
     },
     // path setting 
     ctrlpath: cwd + '/controllers',

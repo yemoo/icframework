@@ -11,14 +11,14 @@
     "iconv": "~2.0.4",
     "memwatch": "~0.2.2",
     "semver": "~1.1.4",
-    "gearman": "git://github.com/mreinstein/node-gearman.git",
     "express-validator": "~0.3.2",
     "consolidate": "~0.9.0",
     "just": "~0.1.8",
     "dustjs-helpers": "~1.1.1",
     "dustjs-linkedin": "~1.2.4",
     "watch": "~0.7.0",
-    "commander": "~1.1.1"
+    "commander": "~1.1.1",
+    "node-gearman": "~0.2.1"
   },
   "main": "index",
   "engines": {

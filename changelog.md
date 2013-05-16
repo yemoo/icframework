@@ -1,3 +1,7 @@
+[2013-05-16]
+* gearman模块重构，支持多个group配置，新增多个功能
+* gearman支持断开自动重连，支持配置重试次数，重试时间间隔
+
 [2013-05-15]
 * before/after支持队列，可以实现串行或者并行
 * 兼容php的session共享方案（实际修改了connect/session）
