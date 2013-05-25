@@ -1,11 +1,15 @@
+[2013-05-25]
+* fixed: 修改gearman中对于连接失败server重连处的一处错误及配置中的错误
+* add: 支持主进程级别的hook
+
 [2013-05-16]
-* gearman模块重构，支持多个group配置，新增多个功能
-* gearman支持断开自动重连，支持配置重试次数，重试时间间隔
+* add: gearman模块重构，支持多个group配置，新增多个功能
+* add: gearman支持断开自动重连，支持配置重试次数，重试时间间隔
 
 [2013-05-15]
-* before/after支持队列，可以实现串行或者并行
-* 兼容php的session共享方案（实际修改了connect/session）
-* 解决调用res.end('xxx')不能输出内容的问题。ctrlUtil中做判断Res.isEnded判断
+* update: before/after支持队列，可以实现串行或者并行
+* update: 兼容php的session共享方案（实际修改了connect/session）
+* fixed: 解决调用res.end('xxx')不能输出内容的问题。ctrlUtil中做判断Res.isEnded判断
 
 [2013-05-09]
 * add: 增加命令行及配置项的uid/gid参数，配置启动用户及用户组

@@ -19,7 +19,7 @@ module.exports = {
         timeout: 2000,
         path: cwd + '/views',
         // global variables
-        data: undefined
+        data: {}
     },
     cookie: {
         secret: 'ICFRAME'
@@ -55,9 +55,9 @@ module.exports = {
 
             timeout: 3000, // job请求超时时长，默认3s
 
-            reconnect: 600000, // 服务器标识为dead多久后尝试重新连接，，默认60s
+            reconnect: 60000, // 服务器标识为dead多久后尝试重新连接，，默认60s
             retries: 5, // 尝试连接次数，超过retries次数后标志该服务器为dead状态，默认5次
-            retry: 30000, // 每次尝试连接的间隔时长，默认3s
+            retry: 3000, // 每次尝试连接的间隔时长，默认3s
 
             prefix: '', // jobName前缀
             suffix: '' // jobName后缀
