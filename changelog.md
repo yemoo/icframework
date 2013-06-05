@@ -1,5 +1,8 @@
+[2013-06-05]
+* add: 支持config.favicon配置
+
 [2013-05-28]
-* 删除application.js中有关debug参数的判断，暂时去掉debug的支持（等以后完善）
+* update: 删除application.js中有关debug参数的判断，暂时去掉debug的支持（等以后完善）
 
 [2013-05-25]
 * fixed: 修改gearman中对于连接失败server重连处的一处错误及配置中的错误
