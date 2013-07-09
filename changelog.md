@@ -1,3 +1,7 @@
+[2013-07-09]
+* fixed: 修复框架安全验证中一处可导致进程假死的代码
+* update: application.js优化
+
 [2013-06-05]
 * add: 支持config.favicon配置
 
