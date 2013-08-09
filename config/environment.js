@@ -8,7 +8,7 @@ module.exports = {
     hostname: '',
     port: 80,
     timeout: 60000, // 1 min
-    gzip: true,
+    //gzip: true,
     // view config
     view: {
         engines: {
