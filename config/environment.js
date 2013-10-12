@@ -13,7 +13,7 @@ module.exports = {
     view: {
         engines: {
             'html': consolidate.dust,
-            'just': consolidate.just
+            'swig': consolidate.swig
         },
         cache: true,
         timeout: 2000,
