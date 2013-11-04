@@ -1,2 +1,0 @@
-- [ ] 完善log部分的实现，研究winston. 优化application.js 202/206行的调试输出方式及配置方法 2013-04-22
-- [ ] 优化ctrlUtil程序第135行，此处如果传入next无效，考虑直接render也存在多次的情况，而不是直接send(send会调用res.end())
