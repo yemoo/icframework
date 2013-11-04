@@ -8,6 +8,7 @@ module.exports = {
     hostname: '',
     port: 80,
     timeout: 60000, // 1 min
+    cache: true,
     //gzip: true,
     // view config
     view: {
@@ -16,7 +17,6 @@ module.exports = {
             'swig': consolidate.swig
         },
         cache: true,
-        timeout: 2000,
         path: cwd + '/views',
         // global variables
         data: {}
@@ -40,18 +40,64 @@ module.exports = {
         csrf_token_name: '_csrf',
         utf8_enable: true
     },
-    accesslog: {
-        //format: 'default',
-        //buffer: false,
-        //stream: false,
-        //immediate: false
+    notFoundPage: {
+        file: 'errors/404.html',
+        absolute: false, // 绝对路径
+        static: false,
+        message: 'Page Not Found',
+        logger: false
+    },
+    errorPage: {
+        file: 'errors/500.html',
+        absolute: false, // 绝对路径
+        static: false,
+        message: 'Internal Server Error',
+        logger: function(err, req, res) {
+            icFrame.logger.getLogger('exception').error(err.stack);
+        }
+    },
+    log: {
+        config: {
+            appenders: {
+                '[default]': {
+                    type: 'file',
+                    filename: '{app}-{env}-info.log',
+                    maxLogSize: 20480,
+                    backups: 10
+                },
+                'gearman': {
+                    type: 'file',
+                    filename: '{app}-{env}-gearman.log',
+                    maxLogSize: 20480,
+                    backups: 10
+                },
+                'exception': {
+                    type: 'file',
+                    filename: '{app}-{env}-exception.log',
+                    maxLogSize: 20480,
+                    backups: 10
+                },
+                'access': {
+                    type: 'file',
+                    filename: '{app}-{env}-access.log',
+                    maxLogSize: 20480,
+                    backups: 10
+                }
+            }
+        },
+        accessOpt: {
+            level: 'auto'
+        },
+        options: {
+            cwd: '/opt/log/'
+        }
     },
     debug: false,
     gearman: {
         group: {},
         config: {
-            initClients: 10,    // 初始化的连接数
-            maxClients: 100,  // 连接池中最大允许的连接数
+            initClients: 10, // 初始化的连接数
+            maxClients: 100, // 连接池中最大允许的连接数
 
             timeout: 3000, // job请求超时时长，默认3s
 
@@ -64,6 +110,5 @@ module.exports = {
         }
     },
     // path setting 
-    ctrlpath: cwd + '/controllers',
-    ignorewatch: "/node_modules|.git|.svn|\.log~?/i"
+    ctrlpath: cwd + '/controllers'
 };

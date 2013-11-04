@@ -1,3 +1,31 @@
+[2013-10-29]
+* 多进程改为单进程
+* 取消文件修改的监控，文件修改后不自动重启服务
+* 增加frameutil.js文件，集成一些方法到utils.frame中
+* 去掉async、chunk模式，所有请求需要自己结束
+* 增加plugins功能，可以配置一些请求拦截的插件，默认集成DEF_INDEX/STAT/HA.txt/crossdomain.xml
+* 集成request_format/validator/redirect/bigpipe到框架的filter中
+* 暂时移除bigpipe模块的调用（模块文件放在filter目录）
+* 删除对config/cluster模块支持（多线程-》单线程），可采用plugin/filter实现同类功能
+* 优化worker.js/configutil.js
+* 配置是否自动缓存controller和template
+* 删除模板超时时间(view:{timeout:2000})配置，移除application中相关代码
+* utils.frame扩展一个wrapReqCallBack，用于将用户回调的异常输出到统一的地方处理
+* filter/callback中的异常集成到errorHandle中统一处理
+* filter中的req.submitJob默认集成到了框架的plugins，删除forcelog参数支持，request.LOG增加4/8两种类型，用户配置输出完整日志
+* 增加cache配置，如果cache为false，则filter/controller都不缓存，template的cache单独配置
+* 删除req.sign_id，移到submitJob的plugin中
+* gearman优化：
+*     -- 初始化配置按照分组来初始化（如initClients为整个分组初始化的连接数）
+*     -- 将数据格式的判断放到plugins的submitJob中
+*     -- 修复gearmanServer断开重连部分的错误
+*     -- 优化相关代码逻辑
+* application.js增加对未捕获异常的处理，超过config.timeout时间支持输出超时信息，取消server.setTimeout的调用，改为application统一捕获，支持req.timeout覆盖默认的timeout配置
+* 增加errorHanler.js模块，支持配置notFoundPage/errorPage自定义错误页面
+* 删除logger.console/separator方法，统一用标准方法调用
+* 优化worker.js退出事件的处理部分以及部分log输出
+* log支持配置[default]|gearman|exception|access几部分的日志，参照log4js
+
 [2013-07-09]
 * fixed: 修复框架安全验证中一处可导致进程假死的代码
 * update: application.js优化

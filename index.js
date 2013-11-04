@@ -1,1 +1,1 @@
-module.exports = require('./lib/icframe');
+module.exports = require('./lib/worker');
