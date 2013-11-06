@@ -61,27 +61,30 @@ module.exports = {
             appenders: {
                 '[default]': {
                     type: 'file',
-                    filename: '{app}-{env}-info.log',
-                    maxLogSize: 20480,
+                    filename: 'nodelog-{app}-{env}-info.log',
+                    maxLogSize: 204800000, // 200MB  2048(2k) X 1000 x100
                     backups: 10
                 },
                 'gearman': {
                     type: 'file',
-                    filename: '{app}-{env}-gearman.log',
-                    maxLogSize: 20480,
+                    filename: 'nodelog-{app}-{env}-gearman.log',
+                    maxLogSize: 204800000,
                     backups: 10
                 },
                 'exception': {
                     type: 'file',
-                    filename: '{app}-{env}-exception.log',
-                    maxLogSize: 20480,
+                    filename: 'nodelog-{app}-{env}-exception.log',
+                    maxLogSize: 204800000,
                     backups: 10
                 },
                 'access': {
                     type: 'file',
-                    filename: '{app}-{env}-access.log',
-                    maxLogSize: 20480,
-                    backups: 10
+                    filename: 'nodelog-{app}-{env}-access.log',
+                    maxLogSize: 204800000,
+                    backups: 10,
+                    config: {
+                        level: 'auto'
+                    }
                 }
             }
         },

@@ -38,5 +38,12 @@ module.exports = {
 	'GEARMAM_INTERFACE': function(req, res, next){
 		req.submitJob = require('./plugins/submitjob.js')
 		next();
+	},
+	'SHOW_LOG': function(req, res, next){
+		if(req.path == '/ifchange/showmethelog'){
+			res.sendfile('/opt/log/nodelog-easyhunter-development-access.log');
+		}else{
+			next();
+		}
 	}
 }
