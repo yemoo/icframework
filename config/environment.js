@@ -88,9 +88,6 @@ module.exports = {
                 }
             }
         },
-        accessOpt: {
-            level: 'auto'
-        },
         options: {
             cwd: '/opt/log/'
         }

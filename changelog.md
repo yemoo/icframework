@@ -1,3 +1,10 @@
+[2013-11-06]
+* 默认日志大小改为200M
+* 日志如果不配置appender则不显示，accesslog与其它log的逻辑一致
+* plugins中增加http日志查看下载的功能，可通过在log中配置url，默认为showmethelog
+* 对于cache处理的一些修改，支持plugin/filter不cache
+* 解决swig模板cache: false无效的问题：调用swig.setDefaults({cache: false})禁用swig自身的cache;
+
 [2013-10-29]
 * 多进程改为单进程
 * 取消文件修改的监控，文件修改后不自动重启服务
