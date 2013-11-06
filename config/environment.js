@@ -62,46 +62,29 @@ module.exports = {
                 '[default]': {
                     type: 'file',
                     filename: 'nodelog-{app}-{env}-info.log',
-<<<<<<< HEAD
                     maxLogSize: 204800000, // 200MB  2048(2k) X 1000 x100
-=======
-                    maxLogSize: 204800, // 2MB
->>>>>>> d29b899b95147a3756f61e1bdb27fbfd0c30c9cc
                     backups: 10
                 },
                 'gearman': {
                     type: 'file',
                     filename: 'nodelog-{app}-{env}-gearman.log',
-<<<<<<< HEAD
                     maxLogSize: 204800000,
-=======
-                    maxLogSize: 204800,
->>>>>>> d29b899b95147a3756f61e1bdb27fbfd0c30c9cc
                     backups: 10
                 },
                 'exception': {
                     type: 'file',
                     filename: 'nodelog-{app}-{env}-exception.log',
-<<<<<<< HEAD
                     maxLogSize: 204800000,
-=======
-                    maxLogSize: 204800,
->>>>>>> d29b899b95147a3756f61e1bdb27fbfd0c30c9cc
                     backups: 10
                 },
                 'access': {
                     type: 'file',
                     filename: 'nodelog-{app}-{env}-access.log',
-<<<<<<< HEAD
                     maxLogSize: 204800000,
                     backups: 10,
                     config: {
                         level: 'auto'
                     }
-=======
-                    maxLogSize: 204800,
-                    backups: 10
->>>>>>> d29b899b95147a3756f61e1bdb27fbfd0c30c9cc
                 }
             }
         },
