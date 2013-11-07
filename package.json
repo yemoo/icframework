@@ -16,7 +16,8 @@
     "commander": "~1.1.1",
     "node-gearman": "~0.2.1",
     "swig": "~1.1.0",
-    "log4js": "~0.6.9"
+    "log4js": "~0.6.9",
+    "division": "~0.4.5"
   },
   "main": "index",
   "engines": {

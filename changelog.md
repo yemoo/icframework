@@ -1,3 +1,9 @@
+[2013-11-07]
+* cache：false的时候forcerequire中判断文件是否修改过，如果未修改则不加载（此处存在一个cpu100%的问题）
+* application.js增加对../路径及参数的访问，直接过滤掉
+* 解决gearman不能正确自动重连的问题，完善Gearman日志输出，修改gearman重试间隔为5s(原来为3s)
+* 
+
 [2013-11-06]
 * 默认日志大小改为200M
 * 日志如果不配置appender则不显示，accesslog与其它log的逻辑一致
