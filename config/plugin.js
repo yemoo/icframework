@@ -1,7 +1,6 @@
 // plugin: 每个请求都会进入，在router之前执行
 var fs = require('fs'),
 	path = require('path');
-
 module.exports = {
 	'DEF_INDEX': function(req, res, next) {
 		// 默认首页

@@ -1,4 +1,6 @@
-var logconfig = icFrame.config.log || {},
+var fs = require('fs'),
+	path = require('path'),
+	logconfig = icFrame.config.log || {},
 	logurl = logconfig.url || '/showmethelog',
 	cwd = logconfig && logconfig.options && logconfig.options.cwd || '',
 	loglistHTML = 'Sorry, no log config info in config!',
