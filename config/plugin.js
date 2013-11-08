@@ -13,12 +13,7 @@ module.exports = {
 	},
 	// gearman work调用统计
 	'STAT': function(req, res, next) {
-		var statFilter = require('./plugins/stat.js');
-		if (req.path == '/stat') {
-			statFilter.apply(this, arguments);
-		} else {
-			next();
-		}
+		require('./plugins/stat.js').apply(this, arguments);
 	},
 	'HA_FILE': function(req, res, next) {
 		if (req.path == '/ha.txt') {
@@ -36,41 +31,10 @@ module.exports = {
 		}
 	},
 	'GEARMAM_INTERFACE': function(req, res, next) {
-		req.submitJob = require('./plugins/submitjob.js')
-		next();
+		require('./plugins/submitjob.js').apply(this, arguments);
 	},
 	// 查看应用的相关日志
-	'SHOW_LOG': (function() {
-		var logconfig = icFrame.config.log || {},
-			logurl = logconfig.url || '/showmethelog',
-			cwd = logconfig && logconfig.options && logconfig.options.cwd || '',
-			loglistHTML = 'Sorry, no log config info in config!',
-			logfiles = [];
-
-		if (logconfig && logconfig.config && logconfig.config.appenders) {
-			loglistHTML = Object.keys(logconfig.config.appenders).map(function(key) {
-				var appender = logconfig.config.appenders[key],
-					filename = appender.filename;
-				return ((appender.type == 'file') && filename) ? ('<a href="' + logurl + '?logfile=' + filename + '" target="_blank">' + filename + '</a><br>') : '';
-			}).join('') || 'Sorry, no file appenders in logconfig!';
-		}
-
-		return function(req, res, next) {
-			var logfile = req.param('logfile');
-			if (req.path == logurl) {
-				if (!logfile) {
-					res.send(loglistHTML);
-				} else {
-					logfile = path.join(cwd, logfile);
-					if (fs.existsSync(logfile)) {
-						res.download(logfile);
-					} else {
-						res.send('Sorry, log file not found!');
-					}
-				}
-			} else {
-				next();
-			}
-		};
-	})()
+	'SHOW_LOG': function() {
+		require('./plugins/showlog.js').apply(this, arguments);
+	}
 };

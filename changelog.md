@@ -1,15 +1,20 @@
+[2013-11-08]
+* 增加division库，支持多线程及守护进程，
+* 默认procNum = 1
+* worker.js可以单独运行，也可以通过icframe.js守护进程运行
+
 [2013-11-07]
 * cache：false的时候forcerequire中判断文件是否修改过，如果未修改则不加载（此处存在一个cpu100%的问题）
 * application.js增加对../路径及参数的访问，直接过滤掉
 * 解决gearman不能正确自动重连的问题，完善Gearman日志输出，修改gearman重试间隔为5s(原来为3s)
-* 
+* 404/500 静态文件自动缓存
 
 [2013-11-06]
 * 默认日志大小改为200M
 * 日志如果不配置appender则不显示，accesslog与其它log的逻辑一致
 * plugins中增加http日志查看下载的功能，可通过在log中配置url，默认为showmethelog
 * 对于cache处理的一些修改，支持plugin/filter不cache
-* 解决swig模板cache: false无效的问题：调用swig.setDefaults({cache: false})禁用swig自身的cache;
+* 解决swig模板cache: fa lse无效的问题：在user的配置中调用swig.setDefaults({cache: false})禁用swig自身的cache;
 
 [2013-10-29]
 * 多进程改为单进程

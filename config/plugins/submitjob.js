@@ -1,5 +1,8 @@
 var util = require('util'),
     logger = icFrame.logger.getLogger('gearman'),
+    pid = process.pid,
+    env = icFrame.config.env,
+    defUID = env == 'production' ? '' : '1',
     LOG_REQ = 1, // 输出请求日志
     LOG_RES = 2, // 输入响应日志
     LOG_FULL_REQ = 4, // 输出完整的请求日志 
@@ -10,11 +13,12 @@ var util = require('util'),
     };
 
 // 扩展submitJob
-module.exports = function(fname, request, options) {
+
+function _submitJob(fname, request, options) {
     var req = this,
         ctrlUtil = req.ctrlUtil,
         start = Date.now(),
-        uid = req.session.uid || '',
+        uid = req.session.uid || defUID,
         _request = request || {},
         logtype = typeof _request.LOG === 'undefined' ? 3 : _request.LOG, // 默认输出请求和响应日志
         showFullReqLog = (logtype & LOG_FULL_REQ) == LOG_FULL_REQ,
@@ -37,7 +41,7 @@ module.exports = function(fname, request, options) {
 
                 if (showResLog) {
                     process.nextTick(function() {
-                        logger.info(['job-res', /*(new Date).toISOString(),*/ req.ip, 'uid:' + uid, jobName, util.inspect(data, showFullResLog && logconfig).replace(/[\n\r\s]+/g, ' '), (Date.now() - start) + 'ms'].join(' | '));
+                        logger.info(['job-res', 'pid:' + pid, /*(new Date).toISOString(),*/ req.ip, 'uid:' + uid, jobName, util.inspect(data, showFullResLog && logconfig).replace(/[\n\r\s]+/g, ' '), (Date.now() - start) + 'ms'].join(' | '));
                     });
                 }
 
@@ -57,7 +61,7 @@ module.exports = function(fname, request, options) {
             version: "1",
             signid: '' + icFrame.utils.string.uuid(10, 10),
             provider: '' + (_request.provider || ''),
-            uid: '' + uid || '1',
+            uid: '' + uid,
             uname: '' + (req.session.uname || ''),
             token: '' + (req.session.token || ''),
             auth: 'sso',
@@ -83,9 +87,14 @@ module.exports = function(fname, request, options) {
 
     if (showReqLog) {
         process.nextTick(function() {
-            logger.info(['job-req', /*(new Date).toISOString(),*/ req.ip, 'uid:' + uid, jobName, util.inspect(request, showFullReqLog && logconfig).replace(/[\n\r\s]+/g, ' ')].join(' | '));
+            logger.info(['job-req', 'pid:' + pid, /*(new Date).toISOString(),*/ req.ip, 'uid:' + uid, jobName, util.inspect(request, showFullReqLog && logconfig).replace(/[\n\r\s]+/g, ' ')].join(' | '));
         });
     }
 
     return submitJob(fname, request, options);
+};
+
+module.exports = function(req, res, next) {
+    req.submitJob = _submitJob;
+    next();
 };

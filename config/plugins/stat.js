@@ -161,5 +161,9 @@ icFrame.gearman.submitJob = function(fname, request, options) {
 };
 
 module.exports = function(req, res, next) {
-	res.json(GMLOGGER.getData(req.param('type')));
+	if (req.path == '/stat') {
+		res.json(GMLOGGER.getData(req.param('type')));
+	} else {
+		next();
+	}
 };
