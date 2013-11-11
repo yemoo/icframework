@@ -19,7 +19,7 @@ var defaultError = {
             err_no: -1,
             err_msg: '服务处理超时'
         }
-    };
+    }, utils = icFrame.utils;
 
 module.exports = function(req, res, next) {
     req.wrapperError = function(type, results, obj) {
