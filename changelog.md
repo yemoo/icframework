@@ -1,3 +1,6 @@
+[2013-11-14]
+* plugin/submitJob支持将header配置到config的header中，以及调用的HEADER中
+
 [2013-11-08]
 * 增加division库，支持多线程及守护进程，
 * 默认procNum = 1

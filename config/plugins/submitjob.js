@@ -1,4 +1,5 @@
 var util = require('util'),
+    utils = icFrame.utils,
     logger = icFrame.logger.getLogger('gearman'),
     pid = process.pid,
     env = icFrame.config.env,
@@ -19,6 +20,8 @@ function _submitJob(fname, request, options) {
         ctrlUtil = req.ctrlUtil,
         start = Date.now(),
         uid = req.session.uid || defUID,
+        // gearman header配置
+        gmHeader = icFrame.config.gearman.header || {},
         _request = request || {},
         logtype = typeof _request.LOG === 'undefined' ? 3 : _request.LOG, // 默认输出请求和响应日志
         showFullReqLog = (logtype & LOG_FULL_REQ) == LOG_FULL_REQ,
@@ -47,7 +50,7 @@ function _submitJob(fname, request, options) {
 
                 callback.call(this, data.response);
             }
-        };
+        }, header;
 
     if (arguments.length < 1) {
         return false;
@@ -56,24 +59,38 @@ function _submitJob(fname, request, options) {
     _request.m && jobName.push(_request.m);
     jobName = jobName.join('.');
 
+    // 兼容之前的代码 [header配置以后都写到HEADER中]
+    !_request.HEADER && (_request.HEADER = {});
+    if(_request.provider){
+        _request.HEADER.provider = _request.provider;
+    }
+    if(_request.mold){
+        _request.HEADER.mold = _request.mold;
+    }
+    // End 兼容代码
+
+    header = utils.mixin({
+        version: 1,
+        signid: utils.string.uuid(10, 10),
+        uid: uid,
+        uname: req.session.uname || '',
+        token: req.session.token || '',
+        ip: icFrame.config.ipAddressNum,
+        auth: 'sso',
+        provider: '',
+        mold: '',
+    }, gmHeader, _request.HEADER);
+
+    // 强制所有header val为字符串
+    Object.keys(header).forEach(function(key) {
+        header[key] = '' + header[key];
+    });
     request = {
-        header: {
-            version: "1",
-            signid: '' + icFrame.utils.string.uuid(10, 10),
-            provider: '' + (_request.provider || ''),
-            uid: '' + uid,
-            uname: '' + (req.session.uname || ''),
-            token: '' + (req.session.token || ''),
-            auth: 'sso',
-            ip: '' + icFrame.config.ipAddressNum,
-            mold: _request.mold || '',
-            appid: _request.appid || '0',
-        },
+        header: header,
         request: _request
     };
     delete _request.LOG;
-    delete _request.mold;
-    delete _request.provider;
+    delete _request.HEADER;
 
     if (options === true) {
         options = wrapCallback(function(job) {
