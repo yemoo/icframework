@@ -1,5 +1,6 @@
 [2013-11-14]
 * plugin/submitJob支持将header配置到config的header中，以及调用的HEADER中
+* 安全过滤增加对key的两端空白字符的自动过滤
 
 [2013-11-08]
 * 增加division库，支持多线程及守护进程，
