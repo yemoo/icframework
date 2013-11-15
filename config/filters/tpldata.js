@@ -5,7 +5,11 @@ var reqKeys = ['params', 'query', 'body', 'cookies', 'signedCookies',
 
 module.exports = function(req, res, next) {
     var locals = this._LOCALS,
-        reqData = {};
+        ctrlUtil = req.ctrlUtil,
+        reqData = {
+            controller: ctrlUtil.get('controller'),
+            action: ctrlUtil.get('action')
+        };
 
     // 全局级别的data
     reqKeys.forEach(function(key) {
