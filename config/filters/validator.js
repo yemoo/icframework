@@ -8,7 +8,8 @@ var defaultError = {
             err_msg: '表单验证失败'
         },
         'REDIRECT': {
-            err_no: -3,
+            // 页面跳转 err_no = 0， 因为不属于错误
+            err_no: 0,
             err_msg: '页面跳转'
         },
         'METHOD': {

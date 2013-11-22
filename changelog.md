@@ -1,3 +1,8 @@
+[2013-11-21]
+* 子进程异常需退出时改为给主进程发exit事件信号，否则永远无法退出
+* 升级express-validator，支持checkBody/checkQuery，增加xss独立模块给security.js用
+* 增加对socket的支持，需要配置run/port/handlepath/config四个参数，默认关闭
+
 [2013-11-14]
 * plugin/submitJob支持将header配置到config的header中，以及调用的HEADER中
 * 安全过滤增加对key的两端空白字符的自动过滤

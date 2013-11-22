@@ -11,6 +11,8 @@ module.exports = {
     cache: true,
     procNum: 1,
     //gzip: true,
+    // path setting 
+    ctrlpath: cwd + '/controllers',
     // view config
     view: {
         engines: {
@@ -112,6 +114,18 @@ module.exports = {
             suffix: '' // jobName后缀
         }
     },
-    // path setting 
-    ctrlpath: cwd + '/controllers'
+    socket: {
+        run: false,
+        //port: 8080,
+        //handlepath: '',
+        options: {
+            'browser client minification': true,
+            'browser client etag': true,
+            'browser client gzip': true,
+            'log level': 1,
+            'transports': [
+                'websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling'
+            ]
+        }
+    }
 };
