@@ -14,12 +14,12 @@
     "dustjs-helpers": "~1.1.1",
     "dustjs-linkedin": "~1.2.4",
     "commander": "~1.1.1",
-    "node-gearman": "~0.2.1",
     "swig": "~1.1.0",
     "log4js": "~0.6.9",
     "division": "~0.4.5",
     "xss": "0.0.8",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "node-gearman": "~0.2.2"
   },
   "main": "index",
   "engines": {
