@@ -1,3 +1,6 @@
+[2013-11-27]
+* plugins/submitJob修改，优化代码，合并req、res Log为1条，并在非产品环境打印log之间增加空行
+
 [2013-11-21]
 * 子进程异常需退出时改为给主进程发exit事件信号，否则永远无法退出
 * 升级express-validator，支持checkBody/checkQuery，增加xss独立模块给security.js用

@@ -13,58 +13,73 @@ var util = require('util'),
         depth: null
     };
 
-// 扩展submitJob
 
+// 扩展submitJob
 function _submitJob(fname, request, options) {
     var req = this,
         ctrlUtil = req.ctrlUtil,
         start = Date.now(),
+        background = false,
         uid = req.session.uid || defUID,
         // gearman header配置
         gmHeader = icFrame.config.gearman.header || {},
         _request = request || {},
-        logtype = typeof _request.LOG === 'undefined' ? 3 : _request.LOG, // 默认输出请求和响应日志
+        logtype = req.param('LOG_TYPE') === undefined ? (typeof _request.LOG === 'undefined' ? 3 : _request.LOG) : req.param('LOG_TYPE'), // 默认输出请求和响应日志
         showFullReqLog = (logtype & LOG_FULL_REQ) == LOG_FULL_REQ,
         showFullResLog = (logtype & LOG_FULL_RES) == LOG_FULL_RES,
         showReqLog = showFullReqLog || (logtype & LOG_REQ) == LOG_REQ,
         showResLog = showFullResLog || (logtype & LOG_RES) == LOG_RES,
-        jobName = [fname],
-        wrapCallback = function(callback) {
-            return function(data) {
-                // 格式化data
-                if (!data.hasOwnProperty('response') && !data.hasOwnProperty('header')) {
-                    data = {
-                        response: data,
-                        header: request.header || {}
-                    };
-                } else {
-                    !data.hasOwnProperty('response') && (data.response = {});
-                    !data.hasOwnProperty('header') && (data.header = request.header || {});
-                }
+        logInfo = [],
+        jobName, header;
 
-                if (showResLog) {
-                    process.nextTick(function() {
-                        logger.info(['job-res', 'pid:' + pid, /*(new Date).toISOString(),*/ req.ip, 'uid:' + uid, jobName, util.inspect(data, showFullResLog && logconfig).replace(/[\n\r\s]+/g, ' '), (Date.now() - start) + 'ms'].join(' | '));
-                    });
-                }
-
-                callback.call(this, data.response);
+    // 打印日志信息
+    function printGearmanLog(warn) {
+        process.nextTick(function() {
+            logger[warn ? 'warn' : 'info'](logInfo.join(' | '));
+            if (icFrame.config.env !== 'production') {
+                console.log('\n');
             }
-        }, header;
+        });
+    }
+
+    // callback之前对数据格式处理
+    function wrapCallback(callback) {
+        return function(data) {
+            header = data.header || header;
+            delete data.header;
+
+            if (!data.hasOwnProperty('response')) {
+                data.response = data;
+            }
+            data.header = header;
+
+            if (showResLog) {
+                logInfo.push(util.inspect(data, showFullResLog && logconfig).replace(/[\n\r\s]+/g, ' '), (Date.now() - start) + 'ms');
+                printGearmanLog(data.response.err_no != 0);
+            }
+
+            callback.call(this, data.response);
+        }
+    }
 
     if (arguments.length < 1) {
         return false;
     }
-    _request.c && jobName.push(_request.c);
-    _request.m && jobName.push(_request.m);
-    jobName = jobName.join('.');
+
+    if (showReqLog || showResLog) {
+        jobName = [fname];
+        _request.c && jobName.push(_request.c);
+        _request.m && jobName.push(_request.m);
+        jobName = jobName.join('_');
+        logInfo = [jobName, 'pid:' + pid, /*(new Date).toISOString(),*/ 'uip:' + req.ip, 'uid:' + uid];
+    }
 
     // 兼容之前的代码 [header配置以后都写到HEADER中]
     !_request.HEADER && (_request.HEADER = {});
-    if(_request.provider){
+    if (_request.provider) {
         _request.HEADER.provider = _request.provider;
     }
-    if(_request.mold){
+    if (_request.mold) {
         _request.HEADER.mold = _request.mold;
     }
     // End 兼容代码
@@ -80,6 +95,8 @@ function _submitJob(fname, request, options) {
         provider: '',
         mold: '',
     }, gmHeader, _request.HEADER);
+    delete _request.LOG;
+    delete _request.HEADER;
 
     // 强制所有header val为字符串
     Object.keys(header).forEach(function(key) {
@@ -89,8 +106,6 @@ function _submitJob(fname, request, options) {
         header: header,
         request: _request
     };
-    delete _request.LOG;
-    delete _request.HEADER;
 
     if (options === true) {
         options = wrapCallback(function(job) {
@@ -100,12 +115,15 @@ function _submitJob(fname, request, options) {
         options = wrapCallback(options);
     } else if (typeof options == 'object' && options.callback) {
         options.callback = wrapCallback(options.callback);
+    } else {
+        background = true;
     }
 
     if (showReqLog) {
-        process.nextTick(function() {
-            logger.info(['job-req', 'pid:' + pid, /*(new Date).toISOString(),*/ req.ip, 'uid:' + uid, jobName, util.inspect(request, showFullReqLog && logconfig).replace(/[\n\r\s]+/g, ' ')].join(' | '));
-        });
+        logInfo.push(util.inspect(request, showFullReqLog && logconfig).replace(/[\n\r\s]+/g, ' '));
+        if (!showResLog || background) {
+            printGearmanLog();
+        }
     }
 
     return submitJob(fname, request, options);
