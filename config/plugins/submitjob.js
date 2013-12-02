@@ -49,7 +49,9 @@ function _submitJob(fname, request, options) {
             delete data.header;
 
             if (!data.hasOwnProperty('response')) {
-                data.response = data;
+                data = {
+                    response: utils.mixin({}, data)
+                };
             }
             data.header = header;
 

@@ -1,3 +1,6 @@
+[2013-12-02]
+* 修复submitJob plugins中callback可能导致Object无限循环引用的问题
+
 [2013-11-27]
 * plugins/submitJob修改，优化代码，合并req、res Log为1条，并在非产品环境打印log之间增加空行
 
