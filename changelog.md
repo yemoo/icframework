@@ -1,3 +1,6 @@
+[2013-12-03]
+* gearman出错或超时的时候尝试close其链接以释放资源
+
 [2013-12-02]
 * 修复submitJob plugins中callback可能导致Object无限循环引用的问题
 
