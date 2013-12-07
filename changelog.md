@@ -22,8 +22,9 @@
     * validator filter修改
         * 调用req.validate(validatorHandles, mapped)，将验证规则写在回调中，返回false则表明验证有错误，错误会自动调用ctrlUtil.render输出到页面：err_msg为所有错误集合数组
         * 可以自己调用req.validationErrors(mapped)获取错误列表
-
-
+    * ctrlUtil 通过plugin/render实现sessionDestroy方法
+* 增加config.favicon配置，如果使用相对路径，则默认相对于controllers目录下，默认调用favicon.ico
+* 增加对config.favicon是否存在的判断
 
 
 [2013-12-03]

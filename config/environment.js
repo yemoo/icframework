@@ -33,6 +33,7 @@ module.exports = {
         // global variables
         data: {}
     },
+    favicon: 'favicon.ico',
     cookie: {
         secret: 'ICFRAME'
     },

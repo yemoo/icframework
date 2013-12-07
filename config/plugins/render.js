@@ -24,8 +24,7 @@ ctrlUtil.prototype.renderView = function(view, data) {
     if (data.err_no != 0) {
         // 重新登录
         if (data.err_no == '302') {
-            req.session.destroy();
-            res.redirect(domain + loginUrl + 'referer=' + req.path);
+            this.sessionDestroy();
             return;
         }
         // gearman请求出错
@@ -41,6 +40,14 @@ ctrlUtil.prototype.renderView = function(view, data) {
 // 数据格式化
 ctrlUtil.prototype.render = function(data, options, callback) {
     render.call(this, utils.mixin({}, defaultData, data), options, callback);
+}
+
+ctrlUtil.prototype.sessionDestroy = function() {
+    var req = this.get('req'),
+        res = this.get('res');
+
+    req.session.destroy();
+    res.redirect(loginUrl + 'referer=' + encodeURIComponent(req.originalUrl));
 }
 
 module.exports = function(req, res, next) {
