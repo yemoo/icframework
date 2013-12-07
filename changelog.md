@@ -1,3 +1,31 @@
+[2013-12-07]
+* 框架默认超时设置为4s
+* 框架默认session过期设置为30分钟
+* 框架增加icFrame.require快捷调用icFrame.utils.frame.require;
+* icFrame.require支持第二个参数来禁止调用cache
+* 框架默认启用gzip: true
+* 框架模板引擎配置修改
+    * 支持传入字符串，自动通过consolidate调用，
+    * 支持object({name: '', isDefault:false, handle: function(){}})，可以通过isDefault设置为默认引擎，默认第一个为default
+    * 支持function: 模板处理程序
+    * 支持预处理程序 preprocessor，可以在调用该引擎前执行一些处理，this = engine object, 传入一个参数为consolidate
+    * 支持公共view engine全局预处理器engineProcessor，传入参数比之前多一个ext
+    * template view cache 默认使用全局的cache的值，除非显式设置cache
+* 增加icFrame.app访问app对象
+* frameUtil增加getType和isType函数
+* ctrlUtil重写，采用原型方式，避免多次创建消耗内存
+* ctrlUtil.render第二个参数如果为字符串，则默认为模板路径，第一个参数可为函数（自动运行获取结果），字符串（直接输出到页面），对象(调用渲染或者json等)
+* plugin/filter更新
+    * plugin submitJob的gmHeader和worker中传的header支持function
+    * 将应用的filter中的render移到框架的plugin中，需要在config中配置loginUrl，默认为'/login'
+    * --swig模板nozip和debug的支持（在应用中实现）
+    * validator filter修改
+        * 调用req.validate(validatorHandles, mapped)，将验证规则写在回调中，返回false则表明验证有错误，错误会自动调用ctrlUtil.render输出到页面：err_msg为所有错误集合数组
+        * 可以自己调用req.validationErrors(mapped)获取错误列表
+
+
+
+
 [2013-12-03]
 * gearman出错或超时的时候尝试close其链接以释放资源
 

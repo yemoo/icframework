@@ -1,5 +1,6 @@
 var cwd = process.cwd(),
-    consolidate = require('consolidate');
+    consolidate = require('consolidate'),
+    expires = 1000 * 60 * 30; // 默认半小时过期
 
 module.exports = {
     uid: 99,
@@ -7,19 +8,27 @@ module.exports = {
     env: 'production',
     hostname: '',
     port: 80,
-    timeout: 60000, // 1 min
+    timeout: 4000, // 服务器 4s 返回超时
     cache: true,
     procNum: 1,
-    //gzip: true,
+    gzip: true,
     // path setting 
     ctrlpath: cwd + '/controllers',
     // view config
     view: {
         engines: {
-            'html': consolidate.dust,
-            'swig': consolidate.swig
+            'html': 'dust',
+            'swig': 'swig'
         },
-        cache: true,
+        engineProcessor: function(consolidate, ext) {
+            if (this.name === 'swig' || ext == 'swig') {
+                // 禁用Swig的模板缓存，使用express自带模板缓存处理机制
+                require('swig').setDefaults({
+                    cache: false
+                });
+            }
+        },
+        //cache: true,
         path: cwd + '/views',
         // global variables
         data: {}
@@ -29,7 +38,11 @@ module.exports = {
     },
     session: {
         secret: 'ICFRAME',
-        key: 'ICFRAME_SID'
+        key: 'ICFRAME_SID',
+        cookie: {
+            expires: new Date(Date.now() + expires).getTime(),
+            maxAge: expires
+        }
     },
     express: {
         'case sensitive routing': true,

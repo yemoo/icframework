@@ -85,6 +85,13 @@ function _submitJob(fname, request, options) {
         _request.HEADER.mold = _request.mold;
     }
     // End 兼容代码
+    
+    if(utils.frame.isType(gmHeader, 'function')){
+        gmHeader = gmHeader();
+    }
+    if(utils.frame.isType(_request.HEADER, 'function')){
+        _request.HEADER = (_request.HEADER)();
+    }
 
     header = utils.mixin({
         version: 1,

@@ -1,6 +1,7 @@
 // plugin: 每个请求都会进入，在router之前执行
 var fs = require('fs'),
 	path = require('path');
+
 module.exports = {
 	'DEF_INDEX': function(req, res, next) {
 		// 默认首页
@@ -35,5 +36,9 @@ module.exports = {
 	// 查看应用的相关日志
 	'SHOW_LOG': function() {
 		require('./plugins/showlog.js').apply(this, arguments);
+	},
+	// 重写render和renderView实现，处理服务端错误
+	'RENDER': function(req, res, next) {
+		require('./plugins/render.js').apply(this, arguments);
 	}
 };
