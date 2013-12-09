@@ -40,10 +40,14 @@ module.exports = {
                             status = args[1];
                         }
                     }
-                    res[mineType](req.wrapperError('REDIRECT', {
-                        url: url,
-                        status: status
-                    }));
+                    res[mineType]({
+                        err_no: 0,
+                        err_msg: 'REDIRECT',
+                        results: {
+                            url: url,
+                            status: status
+                        }
+                    });
                 } else {
                     redirect.apply(res, args);
                 }
