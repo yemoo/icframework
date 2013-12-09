@@ -1,5 +1,6 @@
 [2013-12-09]
 * 修改filter中调用wrapperError的一处错误
+* 修改plugin/render.js中对gearman返回错误的处理，默认直接输出错误信息到页面，可以在req或ctrlUtil上定义onRenderViewError方法
 
 [2013-12-07]
 * 框架默认超时设置为4s
