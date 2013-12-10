@@ -1,3 +1,8 @@
+[2013-12-10]
+* 增加默认的favicon图标(ifchange)，在lin/public下放置
+* gearman中遇到超时和job失败不close client，直接放入free队列
+* gearman总量(totalClient)计算好像有问题，暂时在removeClient中强制不小于0
+
 [2013-12-09]
 * 修改filter中调用wrapperError的一处错误
 * 修改plugin/render.js中对gearman返回错误的处理，默认直接输出错误信息到页面，可以在req或ctrlUtil上定义onRenderViewError方法
