@@ -11,7 +11,7 @@ module.exports = {
     timeout: 4000, // 服务器 4s 返回超时
     cache: true,
     procNum: 1,
-    gzip: true,
+    gzip: true,   // 开启则没有content-length输出
     // path setting 
     ctrlpath: cwd + '/controllers',
     // view config
