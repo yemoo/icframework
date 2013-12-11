@@ -1,3 +1,7 @@
+[2013-12-11]
+* 优化application.js中对用户回调函数队列的处理
+* 删除session配置中expire参数的配置，统一用maxAge处理(删除application中对expires的特殊处理)。 
+
 [2013-12-10]
 * 增加默认的favicon图标(ifchange)，在lin/public下放置
 * gearman中遇到超时和job失败不close client，直接放入free队列

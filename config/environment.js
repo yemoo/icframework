@@ -1,6 +1,5 @@
 var cwd = process.cwd(),
-    consolidate = require('consolidate'),
-    expires = 1000 * 60 * 30; // 默认半小时过期
+    consolidate = require('consolidate');
 
 module.exports = {
     uid: 99,
@@ -11,7 +10,7 @@ module.exports = {
     timeout: 4000, // 服务器 4s 返回超时
     cache: true,
     procNum: 1,
-    gzip: true,   // 开启则没有content-length输出
+    gzip: true, // 开启则没有content-length输出
     // path setting 
     ctrlpath: cwd + '/controllers',
     // view config
@@ -41,8 +40,8 @@ module.exports = {
         secret: 'ICFRAME',
         key: 'ICFRAME_SID',
         cookie: {
-            expires: new Date(Date.now() + expires).getTime(),
-            maxAge: expires
+            httpOnly: false,
+            maxAge: 1000 * 60 * 30 // 默认半小时过期
         }
     },
     express: {
