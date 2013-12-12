@@ -63,13 +63,13 @@ ctrlUtil.prototype.sessionDestroy = function() {
     var req = this.get('req'),
         res = this.get('res'),
         locals = req.app.locals,
-        url = loginConfig.url;
+        url = replaceRe(loginConfig.url);
 
     // 支持 {xxx} 实现自动采用模板变量替换
     function replaceRe(str) {
         return str.replace(/\{(\w+)\}/g, function(o, name) {
             return locals[name] || name;
-        })
+        });
     }
 
     // 有param参数配置则自动加referer参数，否则不加
