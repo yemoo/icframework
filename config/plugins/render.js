@@ -3,7 +3,12 @@ var utils = icFrame.utils,
     ctrlUtil = icFrame.require('./ctrlutil'),
     render = ctrlUtil.prototype.render,
     renderView = ctrlUtil.prototype.renderView,
-    loginUrl = icFrame.config.loginUrl || '/login',
+    loginConfig = icFrame.config.loginConfig,
+    defaultLoginConfig = {
+        url: '/login', // 登陆页url
+        referer: 'referer', // 参数名
+        refererDomain: '' // 强制跳转在某个域名下，安全考虑，此处并不能完全解决，需要login中对referer的值进行过滤再跳转
+    },
     defaultMsg = '未知错误',
     defaultData = {
         err_no: 0,
@@ -11,11 +16,10 @@ var utils = icFrame.utils,
         results: {}
     };
 
-loginUrl += loginUrl.indexOf('?') == -1 ? '?' : '&';
+// loginConfig格式检查
+loginConfig = utils.frame.isType(loginConfig, 'object') ? utils.mixin({}, defaultLoginConfig, loginConfig) : defaultLoginConfig;
 
 // 重写render和renderView实现，处理服务端错误 
-
-// 渲染模板输出
 ctrlUtil.prototype.renderView = function(view, data) {
     var req = this.get('req'),
         res = this.get('res'),
@@ -57,10 +61,24 @@ ctrlUtil.prototype.render = function(data, options, callback) {
 
 ctrlUtil.prototype.sessionDestroy = function() {
     var req = this.get('req'),
-        res = this.get('res');
+        res = this.get('res'),
+        locals = req.app.locals,
+        url = loginConfig.url;
+
+    // 有param参数配置则自动加referer参数，否则不加
+    if (loginConfig.referer) {
+        url += url.indexOf('?') == -1 ? '?' : '&';
+        url = url.replace(new RegExp(loginConfig.referer + '=[^&]*', 'g'), '');
+        url += loginConfig.referer + '=' + encodeURIComponent(loginConfig.refererDomain + req.originalUrl)
+    }
+
+    // 支持 {xxx} 实现自动采用模板变量替换
+    url = url.replace(/\{(\w+)\}/g, function(o, name) {
+        return locals[name] || name;
+    });
 
     req.session.destroy();
-    res.redirect(loginUrl + 'referer=' + encodeURIComponent(req.originalUrl));
+    res.redirect(url);
 }
 
 module.exports = function(req, res, next) {
