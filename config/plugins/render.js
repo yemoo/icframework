@@ -65,17 +65,19 @@ ctrlUtil.prototype.sessionDestroy = function() {
         locals = req.app.locals,
         url = loginConfig.url;
 
+    // 支持 {xxx} 实现自动采用模板变量替换
+    function replaceRe(str) {
+        return str.replace(/\{(\w+)\}/g, function(o, name) {
+            return locals[name] || name;
+        })
+    }
+
     // 有param参数配置则自动加referer参数，否则不加
     if (loginConfig.referer) {
         url += url.indexOf('?') == -1 ? '?' : '&';
         url = url.replace(new RegExp(loginConfig.referer + '=[^&]*', 'g'), '');
-        url += loginConfig.referer + '=' + encodeURIComponent(loginConfig.refererDomain + req.originalUrl)
+        url += loginConfig.referer + '=' + encodeURIComponent(replaceRe(loginConfig.refererDomain + req.originalUrl));
     }
-
-    // 支持 {xxx} 实现自动采用模板变量替换
-    url = url.replace(/\{(\w+)\}/g, function(o, name) {
-        return locals[name] || name;
-    });
 
     req.session.destroy();
     res.redirect(url);
