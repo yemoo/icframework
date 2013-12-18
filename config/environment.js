@@ -113,6 +113,7 @@ module.exports = {
     debug: false,
     gearman: {
         group: {},
+        workers: '/opt/wwwroot/conf/gm.conf',
         config: {
             initClients: 10, // 初始化的连接数
             maxClients: 100, // 连接池中最大允许的连接数

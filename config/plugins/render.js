@@ -75,6 +75,7 @@ ctrlUtil.prototype.sessionDestroy = function() {
     // 有param参数配置则自动加referer参数，否则不加
     if (loginConfig.referer) {
         url += url.indexOf('?') == -1 ? '?' : '&';
+        // 替换之前的referer=xxx
         url = url.replace(new RegExp(loginConfig.referer + '=[^&]*', 'g'), '');
         url += loginConfig.referer + '=' + encodeURIComponent(replaceRe(loginConfig.refererDomain + req.originalUrl));
     }
