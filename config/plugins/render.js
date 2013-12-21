@@ -55,15 +55,13 @@ ctrlUtil.prototype.sessionDestroy = function(referer) {
             return locals[name] || name;
         });
     }
-    if (referer) {
-        url = replaceRe(loginConfig.url);
-        // 有param参数配置则自动加referer参数，否则不加
-        if (loginConfig.referer) {
-            url += url.indexOf('?') == -1 ? '?' : '&';
-            // 替换之前的referer=xxx
-            url = url.replace(new RegExp(loginConfig.referer + '=[^&]*', 'g'), '');
-            url += loginConfig.referer + '=' + encodeURIComponent(replaceRe(loginConfig.refererDomain + referer));
-        }
+
+    // 有param参数配置则自动加referer参数，否则不加
+    if (referer && loginConfig.referer) {
+        url += url.indexOf('?') == -1 ? '?' : '&';
+        // 替换之前的referer=xxx
+        url = url.replace(new RegExp(loginConfig.referer + '=[^&]*', 'g'), '');
+        url += loginConfig.referer + '=' + encodeURIComponent(replaceRe(loginConfig.refererDomain + referer));
     }
 
     req.session.destroy();

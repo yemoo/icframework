@@ -1,3 +1,13 @@
+[2013-12-21]
+* gearman 配置文件格式修改，实现传入配置文件路径的方式：{workername: hosts}  // 待优化：1、机制与性能 2、兼容配置object和url并存
+* 优化filters: res.redirect（ajax请求及json等格式时返回json数据格式）
+* 优化plugins: 增加icFrame.setGMError的方法，设置gearman错误代码的Map。
+*              render.js/renderView不处理302错误及错误信息，优化sessionDestroy方法
+* 优化plugins: submitJob，增加对默认错误信息的设置
+* 检测配置中的configpath, ctrlpath及viewpath，如果没有则报错，对于viewpath只警告处理
+* 增加对static设置的支持，可以设置多个static的映射（禁止staticpath与ctrlpath相同，安全考虑）
+* 支持信号 重启，关闭，增加或减少进程数
+
 [2013-12-11]
 * 优化application.js中对用户回调函数队列的处理
 * 删除session配置中expire参数的配置，统一用maxAge处理(删除application中对expires的特殊处理)。 
