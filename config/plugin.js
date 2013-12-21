@@ -1,6 +1,12 @@
 // plugin: 每个请求都会进入，在router之前执行
 var fs = require('fs'),
-	path = require('path');
+	path = require('path'),
+	utils = icFrame.utils;
+
+// 设置gearman错误代码map
+icFrame.setGMError = function(errMap) {
+    icFrame.gearmanError = utils.mixin({}, icFrame.gearmanError, errMap);
+};
 
 module.exports = {
 	'DEF_INDEX': function(req, res, next) {

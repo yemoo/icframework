@@ -3,7 +3,8 @@ var util = require('util'),
     logger = icFrame.logger.getLogger('gearman'),
     pid = process.pid,
     env = icFrame.config.env,
-    defUID = env == 'production' ? '' : '1',
+    defUID = env === 'production' ? '' : '1',
+    defaultErrMsg = '未知错误',
     LOG_REQ = 1, // 输出请求日志
     LOG_RES = 2, // 输入响应日志
     LOG_FULL_REQ = 4, // 输出完整的请求日志 
@@ -12,7 +13,6 @@ var util = require('util'),
     logconfig = {
         depth: null
     };
-
 
 // 扩展submitJob
 function _submitJob(fname, request, options) {
@@ -45,6 +45,8 @@ function _submitJob(fname, request, options) {
     // callback之前对数据格式处理
     function wrapCallback(callback) {
         return function(data) {
+            var response;
+
             header = data.header || header;
             delete data.header;
 
@@ -55,11 +57,16 @@ function _submitJob(fname, request, options) {
             }
             data.header = header;
 
+            response = data.response;
             if (showResLog) {
                 logInfo.push(util.inspect(data, showFullResLog && logconfig).replace(/[\n\r\s]+/g, ' '), (Date.now() - start) + 'ms');
-                printGearmanLog(data.response.err_no != 0);
+                printGearmanLog(response.err_no != 0);
             }
 
+            // 设置err_msg, 1、错误代码map 2、返回默认错误信息
+            if (!data.response.err_msg && icFrame.gearmanError && response.err_no　!= 0) {
+                data.response.err_msg = icFrame.gearmanError[response.err_no] || defaultErrMsg;
+            }
             callback.call(this, data.response);
         }
     }
@@ -85,11 +92,11 @@ function _submitJob(fname, request, options) {
         _request.HEADER.mold = _request.mold;
     }
     // End 兼容代码
-    
-    if(utils.frame.isType(gmHeader, 'function')){
+
+    if (utils.frame.isType(gmHeader, 'function')) {
         gmHeader = gmHeader();
     }
-    if(utils.frame.isType(_request.HEADER, 'function')){
+    if (utils.frame.isType(_request.HEADER, 'function')) {
         _request.HEADER = (_request.HEADER)();
     }
 

@@ -27,10 +27,15 @@ module.exports = {
             var redirect = res.redirect;
             res.redirect = function(url) {
                 var args = arguments,
-                    mineType = res.mimeType,
+                    mimeType = res.mimeType,
                     status = 302;
 
-                if (mineType == 'json' || mineType == 'jsonp') {
+                // ajax请求，强制为json
+                if (req.xhr && res.mimeType === 'html') {
+                    mimeType = res.mimeType = 'json';
+                }
+
+                if (mimeType == 'json' || mimeType == 'jsonp') {
                     var status = 302;
                     if (2 == args.length) {
                         if ('number' == typeof url) {
@@ -40,13 +45,10 @@ module.exports = {
                             status = args[1];
                         }
                     }
-                    res[mineType]({
-                        err_no: 0,
+                    res[mimeType]({
+                        err_no: status,
                         err_msg: 'REDIRECT',
-                        results: {
-                            url: url,
-                            status: status
-                        }
+                        results: url
                     });
                 } else {
                     redirect.apply(res, args);
