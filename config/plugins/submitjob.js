@@ -64,10 +64,15 @@ function _submitJob(fname, request, options) {
             }
 
             // 设置err_msg, 1、错误代码map 2、返回默认错误信息
-            if (!data.response.err_msg && icFrame.gearmanError && response.err_no　!= 0) {
+            if (!data.response.err_msg && icFrame.gearmanError && response.err_no　 != 0) {
                 data.response.err_msg = icFrame.gearmanError[response.err_no] || defaultErrMsg;
             }
-            callback.call(this, data.response);
+
+            try {
+                callback.call(this, data.response);
+            } catch (e) {
+                req.next(e);
+            }
         }
     }
 

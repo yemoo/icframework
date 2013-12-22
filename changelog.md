@@ -7,6 +7,7 @@
 * 检测配置中的configpath, ctrlpath及viewpath，如果没有则报错，对于viewpath只警告处理
 * 增加对static设置的支持，可以设置多个static的映射（禁止staticpath与ctrlpath相同，安全考虑）
 * 支持信号 重启，关闭，增加或减少进程数
+* 捕获submitJob回调函数中的异常并输出到页面，避免抛出到框架里，导致pending
 
 [2013-12-11]
 * 优化application.js中对用户回调函数队列的处理
