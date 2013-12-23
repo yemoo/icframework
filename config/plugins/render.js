@@ -22,7 +22,8 @@ loginConfig = utils.frame.isType(loginConfig, 'object') ? utils.mixin({}, defaul
 ctrlUtil.prototype.renderView = function(view, data) {
     var req = this.get('req'),
         res = this.get('res'),
-        errorCallback;
+        errorCallback,
+        isRender = true;
 
     // 输出错误信息到页面，不渲染模板
     if (data.err_no != 0 && !data.IGNORE_ERR) {
@@ -30,12 +31,13 @@ ctrlUtil.prototype.renderView = function(view, data) {
         if (!errorCallback) {
             // 应用返回的错误，暂时直接输出到页面上
             res.end(data.err_msg);
+            isRender = false;
         } else {
-            errorCallback.apply(this, arguments);
+            isRender = errorCallback.apply(this, arguments);
         }
     }
 
-    return renderView.apply(this, arguments);
+    return isRender === false ? false : renderView.apply(this, arguments);
 };
 
 // 数据格式化
