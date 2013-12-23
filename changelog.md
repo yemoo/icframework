@@ -1,3 +1,6 @@
+[2013-12-23]
+* 修复gearman返回err_no不等于0时渲染模板报错的问题(renderView输出后没有屏蔽默认的renderView)
+
 [2013-12-21]
 * gearman 配置文件格式修改，实现传入配置文件路径的方式：{workername: hosts}  // 待优化：1、机制与性能 2、兼容配置object和url并存
 * 优化filters: res.redirect（ajax请求及json等格式时返回json数据格式）
