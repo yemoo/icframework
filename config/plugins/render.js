@@ -30,7 +30,7 @@ ctrlUtil.prototype.renderView = function(view, data) {
         errorCallback = req.onRenderViewError || this.onRenderViewError;
         if (!errorCallback) {
             // 应用返回的错误，暂时直接输出到页面上
-            res.end(data.err_msg);
+            res.end(String(data.err_msg));
             isRender = false;
         } else {
             isRender = errorCallback.apply(this, arguments);
