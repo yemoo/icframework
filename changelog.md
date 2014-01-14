@@ -1,3 +1,8 @@
+[2014-01-14]
+* accesslog中增加对各部分执行时间的log信息输出
+* 修改ajax模式下redirect的实现
+* gearman日志每条记录一律用空格分隔
+
 [2013-12-23]
 * 修复gearman返回err_no不等于0时渲染模板报错的问题(renderView输出后没有屏蔽默认的renderView)
 

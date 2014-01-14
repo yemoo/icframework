@@ -36,9 +36,9 @@ function _submitJob(fname, request, options) {
     function printGearmanLog(warn) {
         process.nextTick(function() {
             logger[warn ? 'warn' : 'info'](logInfo.join(' | '));
-            if (icFrame.config.env !== 'production') {
-                console.log('\n');
-            }
+            //if (icFrame.config.env !== 'production') {
+            console.log('\n');
+            //}
         });
     }
 

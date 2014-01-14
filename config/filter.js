@@ -22,36 +22,22 @@ module.exports = {
             require('./filters/validator.js').apply(this, arguments);
             next();
         },
-        // json/jsonp模式下重写res.redirect
+        // ajax模式下重写res.redirect
         'REDIRECT': function(req, res, next) {
-            var redirect = res.redirect;
-            res.redirect = function(url) {
-                var args = arguments,
-                    mimeType = res.mimeType,
-                    status = 302;
+            var end = res.end;
+            res.end = function() {
+                var location = this.get('Location');
 
-                // ajax请求，强制为json
-                if (req.xhr && res.mimeType === 'html') {
-                    mimeType = res.mimeType = 'json';
-                }
-
-                if (mimeType == 'json' || mimeType == 'jsonp') {
-                    var status = 302;
-                    if (2 == args.length) {
-                        if ('number' == typeof url) {
-                            status = url;
-                            url = args[1];
-                        } else {
-                            status = args[1];
-                        }
-                    }
-                    res[mimeType]({
-                        err_no: status,
+                if (req.xhr && location) {
+                    this.removeHeader('Location');
+                    this.removeHeader('Content-Length');
+                    this[this.mimeType === 'jsonp' ? 'jsonp' : 'json'](200, {
+                        err_no: this.statusCode,
                         err_msg: 'REDIRECT',
-                        results: url
+                        results: location
                     });
                 } else {
-                    redirect.apply(res, args);
+                    end.apply(this, arguments);
                 }
             };
             next();
