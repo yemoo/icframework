@@ -101,7 +101,8 @@ module.exports = {
                     maxLogSize: 204800000,
                     backups: 10,
                     config: {
-                        level: 'auto'
+                        level: 'auto',
+                        nolog: "ha\\.txt"
                     }
                 }
             }
